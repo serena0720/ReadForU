@@ -10,9 +10,12 @@
 		D2132A032AD4331F00FB0634 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2132A022AD4331F00FB0634 /* AppDelegate.swift */; };
 		D2132A052AD4331F00FB0634 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2132A042AD4331F00FB0634 /* SceneDelegate.swift */; };
 		D2132A072AD4331F00FB0634 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2132A062AD4331F00FB0634 /* MainViewController.swift */; };
-		D2132A0C2AD4332100FB0634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2132A0B2AD4332100FB0634 /* Assets.xcassets */; };
 		D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */; };
 		D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D2132A1B2AD436D500FB0634 /* .swiftlint.yml */; };
+		D2132A1E2AD546B200FB0634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2132A1D2AD546B200FB0634 /* Assets.xcassets */; };
+		D2132A252AD548FA00FB0634 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = D2132A242AD548FA00FB0634 /* Gifu */; };
+		D29B7CC82AD54B1E00AC0824 /* korea.gif in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CC72AD54B1E00AC0824 /* korea.gif */; };
+		D29B7CCB2AD54B4100AC0824 /* english.gif in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CCA2AD54B4100AC0824 /* english.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +23,12 @@
 		D2132A022AD4331F00FB0634 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2132A042AD4331F00FB0634 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D2132A062AD4331F00FB0634 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		D2132A0B2AD4332100FB0634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2132A0E2AD4332100FB0634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2132A102AD4332100FB0634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2132A1B2AD436D500FB0634 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		D2132A1D2AD546B200FB0634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D29B7CC72AD54B1E00AC0824 /* korea.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = korea.gif; sourceTree = "<group>"; };
+		D29B7CCA2AD54B4100AC0824 /* english.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = english.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2132A252AD548FA00FB0634 /* Gifu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +64,7 @@
 			children = (
 				D2132A1B2AD436D500FB0634 /* .swiftlint.yml */,
 				D2132A162AD4332900FB0634 /* App */,
+				D29B7CC92AD54B2A00AC0824 /* Resource */,
 				D2132A182AD433BF00FB0634 /* Model */,
 				D2132A192AD433D000FB0634 /* Controller */,
 				D2132A172AD4333200FB0634 /* View */,
@@ -86,7 +93,6 @@
 		D2132A182AD433BF00FB0634 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D2132A0B2AD4332100FB0634 /* Assets.xcassets */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -97,6 +103,16 @@
 				D2132A062AD4331F00FB0634 /* MainViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		D29B7CC92AD54B2A00AC0824 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D29B7CCA2AD54B4100AC0824 /* english.gif */,
+				D29B7CC72AD54B1E00AC0824 /* korea.gif */,
+				D2132A1D2AD546B200FB0634 /* Assets.xcassets */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,6 +132,9 @@
 			dependencies = (
 			);
 			name = ReadForU;
+			packageProductDependencies = (
+				D2132A242AD548FA00FB0634 /* Gifu */,
+			);
 			productName = ReadForU;
 			productReference = D21329FF2AD4331F00FB0634 /* ReadForU.app */;
 			productType = "com.apple.product-type.application";
@@ -144,6 +163,9 @@
 				Base,
 			);
 			mainGroup = D21329F62AD4331F00FB0634;
+			packageReferences = (
+				D2132A232AD548FA00FB0634 /* XCRemoteSwiftPackageReference "Gifu" */,
+			);
 			productRefGroup = D2132A002AD4331F00FB0634 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -159,8 +181,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */,
+				D2132A1E2AD546B200FB0634 /* Assets.xcassets in Resources */,
+				D29B7CCB2AD54B4100AC0824 /* english.gif in Resources */,
 				D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */,
-				D2132A0C2AD4332100FB0634 /* Assets.xcassets in Resources */,
+				D29B7CC82AD54B1E00AC0824 /* korea.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +437,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D2132A232AD548FA00FB0634 /* XCRemoteSwiftPackageReference "Gifu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaishin/Gifu";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D2132A242AD548FA00FB0634 /* Gifu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2132A232AD548FA00FB0634 /* XCRemoteSwiftPackageReference "Gifu" */;
+			productName = Gifu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D21329F72AD4331F00FB0634 /* Project object */;
 }
