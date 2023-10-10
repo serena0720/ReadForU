@@ -14,6 +14,8 @@
 		D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D2132A1B2AD436D500FB0634 /* .swiftlint.yml */; };
 		D29B7CCD2AD5533F00AC0824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CCC2AD5533F00AC0824 /* Assets.xcassets */; };
 		D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CCE2AD5559400AC0824 /* MainView.swift */; };
+		D29B7CD12AD56FA200AC0824 /* ReadForU.gif in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CD02AD56FA200AC0824 /* ReadForU.gif */; };
+		D29B7CD42AD5707F00AC0824 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = D29B7CD32AD5707F00AC0824 /* Gifu */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,7 @@
 		D2132A1B2AD436D500FB0634 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D29B7CCC2AD5533F00AC0824 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D29B7CCE2AD5559400AC0824 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D29B7CD02AD56FA200AC0824 /* ReadForU.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ReadForU.gif; path = ../../../Resource/ReadForU.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29B7CD42AD5707F00AC0824 /* Gifu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +109,7 @@
 		D29B7CC92AD54B2A00AC0824 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D29B7CD02AD56FA200AC0824 /* ReadForU.gif */,
 				D29B7CCC2AD5533F00AC0824 /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -128,6 +133,7 @@
 			);
 			name = ReadForU;
 			packageProductDependencies = (
+				D29B7CD32AD5707F00AC0824 /* Gifu */,
 			);
 			productName = ReadForU;
 			productReference = D21329FF2AD4331F00FB0634 /* ReadForU.app */;
@@ -158,6 +164,7 @@
 			);
 			mainGroup = D21329F62AD4331F00FB0634;
 			packageReferences = (
+				D29B7CD22AD5707F00AC0824 /* XCRemoteSwiftPackageReference "Gifu" */,
 			);
 			productRefGroup = D2132A002AD4331F00FB0634 /* Products */;
 			projectDirPath = "";
@@ -173,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29B7CD12AD56FA200AC0824 /* ReadForU.gif in Resources */,
 				D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */,
 				D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */,
 				D29B7CCD2AD5533F00AC0824 /* Assets.xcassets in Resources */,
@@ -429,6 +437,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D29B7CD22AD5707F00AC0824 /* XCRemoteSwiftPackageReference "Gifu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaishin/Gifu";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D29B7CD32AD5707F00AC0824 /* Gifu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D29B7CD22AD5707F00AC0824 /* XCRemoteSwiftPackageReference "Gifu" */;
+			productName = Gifu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D21329F72AD4331F00FB0634 /* Project object */;
 }
