@@ -13,6 +13,7 @@
 		D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */; };
 		D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D2132A1B2AD436D500FB0634 /* .swiftlint.yml */; };
 		D29B7CCD2AD5533F00AC0824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CCC2AD5533F00AC0824 /* Assets.xcassets */; };
+		D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CCE2AD5559400AC0824 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D2132A102AD4332100FB0634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2132A1B2AD436D500FB0634 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D29B7CCC2AD5533F00AC0824 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D29B7CCE2AD5559400AC0824 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */,
+				D29B7CCE2AD5559400AC0824 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2132A072AD4331F00FB0634 /* MainViewController.swift in Sources */,
+				D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */,
 				D2132A032AD4331F00FB0634 /* AppDelegate.swift in Sources */,
 				D2132A052AD4331F00FB0634 /* SceneDelegate.swift in Sources */,
 			);
