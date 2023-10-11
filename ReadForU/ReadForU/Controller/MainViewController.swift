@@ -16,5 +16,17 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUpNavigationBar()
+    }
+    
+    private func setUpNavigationBar() {
+        let titleImageView = UIImageView()
+        
+        titleImageView.contentMode = .scaleAspectFit
+        titleImageView.image = UIImage(named: "title")
+        
+        navigationItem.titleView = titleImageView
+        navigationItem.hidesBackButton = true
     }
 }
