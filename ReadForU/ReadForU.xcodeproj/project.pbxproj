@@ -18,6 +18,10 @@
 		D29B7CD62AD570F600AC0824 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CD52AD570F600AC0824 /* LoadingViewController.swift */; };
 		D29B7CD82AD573DB00AC0824 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CD72AD573DB00AC0824 /* LoadingView.swift */; };
 		D29B7CDA2AD5A76600AC0824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CD92AD5A76600AC0824 /* Assets.xcassets */; };
+		D29B7CDC2AD6480F00AC0824 /* BasicTranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CDB2AD6480F00AC0824 /* BasicTranslateViewController.swift */; };
+		D29B7CDE2AD6483000AC0824 /* RealTimeTranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CDD2AD6483000AC0824 /* RealTimeTranslateViewController.swift */; };
+		D29B7CE02AD6484300AC0824 /* BasicTranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CDF2AD6484300AC0824 /* BasicTranslateView.swift */; };
+		D29B7CE22AD6485200AC0824 /* RealTimeTranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CE12AD6485200AC0824 /* RealTimeTranslateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		D29B7CD52AD570F600AC0824 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D29B7CD72AD573DB00AC0824 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D29B7CD92AD5A76600AC0824 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D29B7CDB2AD6480F00AC0824 /* BasicTranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTranslateViewController.swift; sourceTree = "<group>"; };
+		D29B7CDD2AD6483000AC0824 /* RealTimeTranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeTranslateViewController.swift; sourceTree = "<group>"; };
+		D29B7CDF2AD6484300AC0824 /* BasicTranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTranslateView.swift; sourceTree = "<group>"; };
+		D29B7CE12AD6485200AC0824 /* RealTimeTranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeTranslateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */,
-				D29B7CCE2AD5559400AC0824 /* MainView.swift */,
 				D29B7CD72AD573DB00AC0824 /* LoadingView.swift */,
+				D29B7CCE2AD5559400AC0824 /* MainView.swift */,
+				D29B7CDF2AD6484300AC0824 /* BasicTranslateView.swift */,
+				D29B7CE12AD6485200AC0824 /* RealTimeTranslateView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,8 +117,10 @@
 		D2132A192AD433D000FB0634 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D2132A062AD4331F00FB0634 /* MainViewController.swift */,
 				D29B7CD52AD570F600AC0824 /* LoadingViewController.swift */,
+				D2132A062AD4331F00FB0634 /* MainViewController.swift */,
+				D29B7CDB2AD6480F00AC0824 /* BasicTranslateViewController.swift */,
+				D29B7CDD2AD6483000AC0824 /* RealTimeTranslateViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -221,11 +233,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29B7CE22AD6485200AC0824 /* RealTimeTranslateView.swift in Sources */,
+				D29B7CE02AD6484300AC0824 /* BasicTranslateView.swift in Sources */,
+				D29B7CDE2AD6483000AC0824 /* RealTimeTranslateViewController.swift in Sources */,
 				D2132A072AD4331F00FB0634 /* MainViewController.swift in Sources */,
 				D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */,
 				D29B7CD62AD570F600AC0824 /* LoadingViewController.swift in Sources */,
 				D2132A032AD4331F00FB0634 /* AppDelegate.swift in Sources */,
 				D2132A052AD4331F00FB0634 /* SceneDelegate.swift in Sources */,
+				D29B7CDC2AD6480F00AC0824 /* BasicTranslateViewController.swift in Sources */,
 				D29B7CD82AD573DB00AC0824 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
