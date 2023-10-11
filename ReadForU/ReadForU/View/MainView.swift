@@ -75,8 +75,8 @@ final class MainView: UIView {
         return button
     }()
     
-    private let basicTranslateAction = UIAction(title: "번역할 내용을 입력하세요.") { _ in
-        
+    private lazy var basicTranslateAction = UIAction(title: "번역할 내용을 입력하세요.") { _ in
+        self.delegate?.showBasicTranslateViewController()
     }
     
     private lazy var realTimeTranslateButton: UIButton = {
@@ -87,8 +87,8 @@ final class MainView: UIView {
         return button
     }()
     
-    private let realTimeTranslateAction = UIAction(title: "실시간 번역") { _ in
-        
+    private lazy var realTimeTranslateAction = UIAction(title: "실시간 번역") { _ in
+        self.delegate?.showRealTimeTranslateViewController()
     }
     
     private lazy var captureTranslateButton: UIButton = {

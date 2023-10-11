@@ -18,6 +18,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setUpNavigationBar()
+        assignDelegate()
     }
     
     private func setUpNavigationBar() {
@@ -28,5 +29,24 @@ final class MainViewController: UIViewController {
         
         navigationItem.titleView = titleImageView
         navigationItem.hidesBackButton = true
+    }
+}
+
+// MARK: - Delegate
+extension MainViewController: MainViewDelegate {
+    private func assignDelegate() {
+        mainView.delegate = self
+    }
+    
+    func showBasicTranslateViewController() {
+        let basicTranslateViewController = BasicTranslateViewController()
+        
+        navigationController?.pushViewController(basicTranslateViewController, animated: true)
+    }
+    
+    func showRealTimeTranslateViewController() {
+        let realTimeTranslateViewController = RealTimeTranslateViewController()
+        
+        navigationController?.pushViewController(realTimeTranslateViewController, animated: true)
     }
 }
