@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
     private func setNavigationAppearance() {
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = UIColor(red: 255/255, green: 90/255, blue: 93/255, alpha: 90/100)
+        appearance.backgroundColor = .mainPink
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
