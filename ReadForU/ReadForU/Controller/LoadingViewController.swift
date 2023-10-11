@@ -22,10 +22,23 @@ final class LoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showMainViewController),
+                                               name: NSNotification.Name("isGifDone"),
+                                               object: nil)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    @objc
+    private func showMainViewController() {
+        let mainVC = MainViewController()
+        
+        navigationController?.pushViewController(mainVC, animated: false)
     }
 }
