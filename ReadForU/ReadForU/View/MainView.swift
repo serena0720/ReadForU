@@ -15,6 +15,7 @@ protocol MainViewDelegate: AnyObject {
 final class MainView: UIView {
     weak var delegate: MainViewDelegate?
     
+    // TODO: View마다 곂치는 요소 고민해보기
     private lazy var originalLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "원어", children: [
@@ -75,6 +76,14 @@ final class MainView: UIView {
         return button
     }()
     
+    private let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightPinkGrey
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private lazy var basicTranslateAction = UIAction(title: "번역할 내용을 입력하세요.") { _ in
         self.delegate?.showBasicTranslateViewController()
     }
@@ -119,6 +128,7 @@ final class MainView: UIView {
         setUpBackgroundColor()
         configureUI()
         setUpLanguageButtonStackViewConstraints()
+        setUpSeparatorViewConstraints()
         setUpTranslateButtonStackViewConstraints()
         addChangeLanguageGesture()
     }
@@ -133,6 +143,7 @@ final class MainView: UIView {
     
     private func configureUI() {
         addSubview(languageButtonStackView)
+        addSubview(separatorView)
         addSubview(translateButtonStackView)
         
         [originalLanguageButton, changeLanguageView, translatedLanguageButton].forEach {
@@ -156,11 +167,20 @@ final class MainView: UIView {
         ])
     }
     
+    private func setUpSeparatorViewConstraints() {
+        NSLayoutConstraint.activate([
+            separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separatorView.topAnchor.constraint(equalTo: languageButtonStackView.bottomAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+    
     private func setUpTranslateButtonStackViewConstraints() {
         NSLayoutConstraint.activate([
             translateButtonStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             translateButtonStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            translateButtonStackView.topAnchor.constraint(equalTo: languageButtonStackView.bottomAnchor),
+            translateButtonStackView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
             translateButtonStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             basicTranslateButton.heightAnchor.constraint(equalTo: translateButtonStackView.heightAnchor, multiplier: 0.6),
