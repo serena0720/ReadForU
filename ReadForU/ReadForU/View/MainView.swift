@@ -50,7 +50,7 @@ final class MainView: UIView {
         return imageView
     }()
     
-    private let buttonStackView: UIStackView = {
+    private let languageButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .center
@@ -60,12 +60,50 @@ final class MainView: UIView {
         return stackView
     }()
     
+    private let basicTranslateButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("번역할 내용을 입력하세요.", for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
+        button.backgroundColor = .systemBackground
+        
+        return button
+    }()
+    
+    private let realTimeTranslateButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("실시간 번역", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.backgroundColor = .lightPinkGrey
+        
+        return button
+    }()
+    
+    private let captureTranslateButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("캡쳐 번역", for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
+        button.backgroundColor = .lightPink
+        
+        return button
+    }()
+    
+    private let translateButtonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setUpBackgroundColor()
         configureUI()
-        setUpButtonStackViewConstraints()
+        setUpLanguageButtonStackViewConstraints()
+        setUpTranslateButtonStackViewConstraints()
         addChangeLanguageGesture()
     }
     
@@ -78,23 +116,43 @@ final class MainView: UIView {
     }
     
     private func configureUI() {
-        addSubview(buttonStackView)
+        addSubview(languageButtonStackView)
+        addSubview(translateButtonStackView)
         
         [originalLanguageButton, changeLanguageView, translatedLanguageButton].forEach {
-            buttonStackView.addArrangedSubview($0)
+            languageButtonStackView.addArrangedSubview($0)
+        }
+        [basicTranslateButton, realTimeTranslateButton, captureTranslateButton].forEach {
+            translateButtonStackView.addArrangedSubview($0)
         }
     }
     
     // MARK: - Constraints
-    private func setUpButtonStackViewConstraints() {
+    private func setUpLanguageButtonStackViewConstraints() {
         NSLayoutConstraint.activate([
-            buttonStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 80),
-            buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -80),
-            buttonStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            buttonStackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.1),
+            languageButtonStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 80),
+            languageButtonStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -80),
+            languageButtonStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            languageButtonStackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.1),
             
-            changeLanguageView.widthAnchor.constraint(equalTo: buttonStackView.heightAnchor, multiplier: 0.5),
+            changeLanguageView.widthAnchor.constraint(equalTo: languageButtonStackView.heightAnchor, multiplier: 0.5),
             changeLanguageView.heightAnchor.constraint(equalTo: changeLanguageView.widthAnchor, multiplier: 1)
+        ])
+    }
+    
+    private func setUpTranslateButtonStackViewConstraints() {
+        NSLayoutConstraint.activate([
+            translateButtonStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            translateButtonStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            translateButtonStackView.topAnchor.constraint(equalTo: languageButtonStackView.bottomAnchor),
+            translateButtonStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            basicTranslateButton.heightAnchor.constraint(equalTo: translateButtonStackView.heightAnchor, multiplier: 0.6),
+            basicTranslateButton.widthAnchor.constraint(equalTo: translateButtonStackView.widthAnchor, multiplier: 1),
+            realTimeTranslateButton.heightAnchor.constraint(equalTo: translateButtonStackView.heightAnchor, multiplier: 0.2),
+            realTimeTranslateButton.widthAnchor.constraint(equalTo: translateButtonStackView.widthAnchor, multiplier: 1),
+            captureTranslateButton.heightAnchor.constraint(equalTo: translateButtonStackView.heightAnchor, multiplier: 0.2),
+            captureTranslateButton.widthAnchor.constraint(equalTo: translateButtonStackView.widthAnchor, multiplier: 1)
         ])
     }
     
