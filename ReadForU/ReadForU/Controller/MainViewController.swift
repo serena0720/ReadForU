@@ -18,6 +18,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setUpNavigationBar()
+        setUpNavigationBackBarButton()
         assignDelegate()
     }
     
@@ -29,6 +30,14 @@ final class MainViewController: UIViewController {
         
         navigationItem.titleView = titleImageView
         navigationItem.hidesBackButton = true
+    }
+    
+    private func setUpNavigationBackBarButton() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        backBarButtonItem.tintColor = .white
+        
+        navigationItem.backBarButtonItem = backBarButtonItem
     }
 }
 
