@@ -25,9 +25,9 @@ final class LoadingView: UIView {
         super.init(frame: frame)
         
         setUpBackgroundColor()
+        configureUI()
         setUpGifImage()
         animateGifImage()
-        configureGifImage()
     }
     
     required init?(coder: NSCoder) {
@@ -38,20 +38,27 @@ final class LoadingView: UIView {
         backgroundColor = .systemBackground
     }
     
-    private func setUpGifImage() {
+    private func configureUI() {
         addSubview(gifImageView)
     }
     
-    private func animateGifImage() {
-        gifImageView.animate(withGIFNamed: "ReadForU")
-    }
-    
-    private func configureGifImage() {
+    // MARK: - Constraints
+    private func setUpGifImage() {
         NSLayoutConstraint.activate([
             gifImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             gifImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             gifImageView.topAnchor.constraint(equalTo: topAnchor),
             gifImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    // MARK: - Private
+    private func animateGifImage() {
+        gifImageView.animate(withGIFNamed: "ReadForU",
+                             loopCount: 1,
+                             loopBlock: {
+            NotificationCenter.default.post(name: NSNotification.Name("isGifDone"),
+                                            object: nil)
+        })
     }
 }
