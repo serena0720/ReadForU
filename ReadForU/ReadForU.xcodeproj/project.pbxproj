@@ -12,12 +12,12 @@
 		D2132A072AD4331F00FB0634 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2132A062AD4331F00FB0634 /* MainViewController.swift */; };
 		D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */; };
 		D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D2132A1B2AD436D500FB0634 /* .swiftlint.yml */; };
-		D29B7CCD2AD5533F00AC0824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CCC2AD5533F00AC0824 /* Assets.xcassets */; };
 		D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CCE2AD5559400AC0824 /* MainView.swift */; };
 		D29B7CD12AD56FA200AC0824 /* ReadForU.gif in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CD02AD56FA200AC0824 /* ReadForU.gif */; };
 		D29B7CD42AD5707F00AC0824 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = D29B7CD32AD5707F00AC0824 /* Gifu */; };
 		D29B7CD62AD570F600AC0824 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CD52AD570F600AC0824 /* LoadingViewController.swift */; };
 		D29B7CD82AD573DB00AC0824 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CD72AD573DB00AC0824 /* LoadingView.swift */; };
+		D29B7CDA2AD5A76600AC0824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CD92AD5A76600AC0824 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,11 +28,11 @@
 		D2132A0E2AD4332100FB0634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2132A102AD4332100FB0634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2132A1B2AD436D500FB0634 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		D29B7CCC2AD5533F00AC0824 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D29B7CCE2AD5559400AC0824 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D29B7CD02AD56FA200AC0824 /* ReadForU.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ReadForU.gif; path = ../../../Resource/ReadForU.gif; sourceTree = "<group>"; };
 		D29B7CD52AD570F600AC0824 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D29B7CD72AD573DB00AC0824 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		D29B7CD92AD5A76600AC0824 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */,
-				D29B7CD72AD573DB00AC0824 /* LoadingView.swift */,
 				D29B7CCE2AD5559400AC0824 /* MainView.swift */,
+				D29B7CD72AD573DB00AC0824 /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -99,6 +99,7 @@
 		D2132A182AD433BF00FB0634 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D29B7CD92AD5A76600AC0824 /* Assets.xcassets */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				D29B7CD02AD56FA200AC0824 /* ReadForU.gif */,
-				D29B7CCC2AD5533F00AC0824 /* Assets.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -188,8 +188,8 @@
 			files = (
 				D29B7CD12AD56FA200AC0824 /* ReadForU.gif in Resources */,
 				D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */,
+				D29B7CDA2AD5A76600AC0824 /* Assets.xcassets in Resources */,
 				D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */,
-				D29B7CCD2AD5533F00AC0824 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +382,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sha.ReadForU;
+				PRODUCT_BUNDLE_IDENTIFIER = Serena.ReadForU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -412,7 +412,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sha.ReadForU;
+				PRODUCT_BUNDLE_IDENTIFIER = Serena.ReadForU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
