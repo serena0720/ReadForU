@@ -7,14 +7,21 @@
 
 import UIKit
 
+protocol MainViewDelegate: AnyObject {
+    func showBasicTranslateViewController()
+    func showRealTimeTranslateViewController()
+}
+
 final class MainView: UIView {
+    weak var delegate: MainViewDelegate?
+    
     private lazy var originalLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "원어", children: [
-            UIAction(title: "한글", state: .on, handler: languageAction),
-            UIAction(title: "영어", handler: languageAction),
-            UIAction(title: "중국어", handler: languageAction),
-            UIAction(title: "일본어", handler: languageAction)
+            UIAction(title: "한글", state: .on, handler: reverseLanguageAction),
+            UIAction(title: "영어", handler: reverseLanguageAction),
+            UIAction(title: "중국어", handler: reverseLanguageAction),
+            UIAction(title: "일본어", handler: reverseLanguageAction)
         ])
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
@@ -26,10 +33,10 @@ final class MainView: UIView {
     private lazy var translatedLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "번역어", children: [
-            UIAction(title: "한글", handler: languageAction),
-            UIAction(title: "영어", state: .on, handler: languageAction),
-            UIAction(title: "중국어", handler: languageAction),
-            UIAction(title: "일본어", handler: languageAction)
+            UIAction(title: "한글", handler: reverseLanguageAction),
+            UIAction(title: "영어", state: .on, handler: reverseLanguageAction),
+            UIAction(title: "중국어", handler: reverseLanguageAction),
+            UIAction(title: "일본어", handler: reverseLanguageAction)
         ])
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
@@ -38,7 +45,7 @@ final class MainView: UIView {
         return button
     }()
     
-    private lazy var languageAction = { (action: UIAction) in
+    private lazy var reverseLanguageAction = { (action: UIAction) in
         self.changeLanguage(title: action.title)
     }
     
@@ -60,32 +67,41 @@ final class MainView: UIView {
         return stackView
     }()
     
-    private let basicTranslateButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("번역할 내용을 입력하세요.", for: .normal)
+    private lazy var basicTranslateButton: UIButton = {
+        let button = UIButton(primaryAction: basicTranslateAction)
         button.setTitleColor(.lightGray, for: .normal)
         button.backgroundColor = .systemBackground
         
         return button
     }()
     
-    private let realTimeTranslateButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("실시간 번역", for: .normal)
+    private let basicTranslateAction = UIAction(title: "번역할 내용을 입력하세요.") { _ in
+        
+    }
+    
+    private lazy var realTimeTranslateButton: UIButton = {
+        let button = UIButton(primaryAction: realTimeTranslateAction)
         button.setTitleColor(.darkGray, for: .normal)
         button.backgroundColor = .lightPinkGrey
         
         return button
     }()
     
-    private let captureTranslateButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("캡쳐 번역", for: .normal)
+    private let realTimeTranslateAction = UIAction(title: "실시간 번역") { _ in
+        
+    }
+    
+    private lazy var captureTranslateButton: UIButton = {
+        let button = UIButton(primaryAction: captureTranslateAction)
         button.setTitleColor(.darkGray, for: .normal)
         button.backgroundColor = .lightPink
         
         return button
     }()
+    
+    private let captureTranslateAction = UIAction(title: "캡쳐 번역") { _ in
+        print("TODO: 캡쳐 번역 구현하기")
+    }
     
     private let translateButtonStackView: UIStackView = {
         let stackView = UIStackView()
