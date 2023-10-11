@@ -13,8 +13,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let loadingViewController = LoadingViewController()
-        let navigationController = UINavigationController(rootViewController: loadingViewController)
+        // TODO: - LoadingView로 돌려놓기
+//        let loadingViewController = LoadingViewController()
+        let mainVC = MainViewController()
+        let navigationController = UINavigationController(rootViewController: mainVC)
         
         setNavigationAppearance()
         window = UIWindow(windowScene: windowScene)
