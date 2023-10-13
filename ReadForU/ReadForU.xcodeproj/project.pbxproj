@@ -14,6 +14,7 @@
 		D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D2132A1B2AD436D500FB0634 /* .swiftlint.yml */; };
 		D22442DA2AD9A0800004873D /* PapagoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22442D92AD9A0800004873D /* PapagoMessage.swift */; };
 		D22442DC2AD9A0EB0004873D /* PapagoTranslateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22442DB2AD9A0EB0004873D /* PapagoTranslateResult.swift */; };
+		D22442DF2AD9A2330004873D /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22442DE2AD9A2330004873D /* TranslateService.swift */; };
 		D22E01732AD8E03B00C9DD30 /* LanguageChangeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */; };
 		D248461E2AD99EDF00B9935C /* LanguageCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248461D2AD99EDF00B9935C /* LanguageCode.swift */; };
 		D24846212AD99F9C00B9935C /* PapagoTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24846202AD99F9C00B9935C /* PapagoTranslate.swift */; };
@@ -39,6 +40,7 @@
 		D2132A1B2AD436D500FB0634 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D22442D92AD9A0800004873D /* PapagoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoMessage.swift; sourceTree = "<group>"; };
 		D22442DB2AD9A0EB0004873D /* PapagoTranslateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoTranslateResult.swift; sourceTree = "<group>"; };
+		D22442DE2AD9A2330004873D /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChangeButtonView.swift; sourceTree = "<group>"; };
 		D248461D2AD99EDF00B9935C /* LanguageCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCode.swift; sourceTree = "<group>"; };
 		D24846202AD99F9C00B9935C /* PapagoTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoTranslate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				D2132A162AD4332900FB0634 /* App */,
 				D29B7CC92AD54B2A00AC0824 /* Resource */,
 				D2132A182AD433BF00FB0634 /* Model */,
+				D22442DD2AD9A2190004873D /* Service */,
 				D2132A192AD433D000FB0634 /* Controller */,
 				D2132A172AD4333200FB0634 /* View */,
 				D2132A102AD4332100FB0634 /* Info.plist */,
@@ -120,9 +123,9 @@
 		D2132A182AD433BF00FB0634 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D248461D2AD99EDF00B9935C /* LanguageCode.swift */,
 				D248461F2AD99F7400B9935C /* DTO */,
 				D29B7CD92AD5A76600AC0824 /* Assets.xcassets */,
-				D248461D2AD99EDF00B9935C /* LanguageCode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,6 +139,14 @@
 				D29B7CDD2AD6483000AC0824 /* RealTimeTranslateViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		D22442DD2AD9A2190004873D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D22442DE2AD9A2330004873D /* TranslateService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		D248461F2AD99F7400B9935C /* DTO */ = {
@@ -256,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22442DF2AD9A2330004873D /* TranslateService.swift in Sources */,
 				D29B7CE22AD6485200AC0824 /* RealTimeTranslateView.swift in Sources */,
 				D29B7CE02AD6484300AC0824 /* BasicTranslateView.swift in Sources */,
 				D29B7CDE2AD6483000AC0824 /* RealTimeTranslateViewController.swift in Sources */,

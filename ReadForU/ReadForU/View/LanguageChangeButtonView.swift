@@ -8,13 +8,17 @@
 import UIKit
 
 class LanguageChangeButtonView: UIView {
+    var sourceLanguage: String = "한글"
+    var targetLanguage: String = "영어"
+    
     private lazy var sourceLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "원어", children: [
-            UIAction(title: "한글", state: .on, handler: reverseLanguageAction),
-            UIAction(title: "영어", handler: reverseLanguageAction),
-            UIAction(title: "중국어", handler: reverseLanguageAction),
-            UIAction(title: "일본어", handler: reverseLanguageAction)
+            UIAction(title: "한글", state: .on, handler: selectLanguageAction),
+            UIAction(title: "영어", handler: selectLanguageAction),
+            UIAction(title: "일본어", handler: selectLanguageAction),
+            UIAction(title: "중국어 간체", handler: selectLanguageAction),
+            UIAction(title: "중국어 번체", handler: selectLanguageAction)
         ])
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
@@ -28,10 +32,11 @@ class LanguageChangeButtonView: UIView {
     private lazy var targetLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "번역어", children: [
-            UIAction(title: "한글", handler: reverseLanguageAction),
-            UIAction(title: "영어", state: .on, handler: reverseLanguageAction),
-            UIAction(title: "중국어", handler: reverseLanguageAction),
-            UIAction(title: "일본어", handler: reverseLanguageAction)
+            UIAction(title: "한글", handler: selectLanguageAction),
+            UIAction(title: "영어", state: .on, handler: selectLanguageAction),
+            UIAction(title: "일본어", handler: selectLanguageAction),
+            UIAction(title: "중국어 간체", handler: selectLanguageAction),
+            UIAction(title: "중국어 번체", handler: selectLanguageAction)
         ])
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
@@ -42,8 +47,8 @@ class LanguageChangeButtonView: UIView {
         return button
     }()
     
-    private lazy var reverseLanguageAction = { (action: UIAction) in
-        self.changeLanguage(title: action.title)
+    private lazy var selectLanguageAction = { (action: UIAction) in
+        self.changeToSelectedLanguage(title: action.title)
     }
     
     private let changeLanguageView: UIImageView = {
@@ -61,7 +66,7 @@ class LanguageChangeButtonView: UIView {
         
         configureUI()
         setUpConstraints()
-        addChangeLanguageGesture()
+        addReverseLanguageGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -106,11 +111,11 @@ class LanguageChangeButtonView: UIView {
     }
     
     // MARK: - Private
-    private func changeLanguage(title: String) {
-        print("\(title)로 바꾸겠습니다.")
+    private func changeToSelectedLanguage(title: String) {
+        sourceLanguage = title
     }
     
-    private func addChangeLanguageGesture() {
+    private func addReverseLanguageGesture() {
         changeLanguageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(reverseLanguage)))
     }
     
@@ -118,7 +123,29 @@ class LanguageChangeButtonView: UIView {
     private func reverseLanguage() {
         rotateButton()
         
-        print("언어를 교환합니다.")
+        let tempLanguage = sourceLanguage
+        sourceLanguage = targetLanguage
+        targetLanguage = tempLanguage
+        
+        sourceLanguageButton.menu?.children.forEach({ action in
+            guard let action = action as? UIAction else { return }
+            
+            if action.title == targetLanguage {
+                action.state = .off
+            } else if action.title == sourceLanguage {
+                action.state = .on
+            }
+        })
+        
+        targetLanguageButton.menu?.children.forEach({ action in
+            guard let action = action as? UIAction else { return }
+            
+            if action.title == sourceLanguage {
+                action.state = .off
+            } else if action.title == targetLanguage {
+                action.state = .on
+            }
+        })
     }
     
     private func rotateButton() {
