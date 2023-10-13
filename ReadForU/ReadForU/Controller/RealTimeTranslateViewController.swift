@@ -10,13 +10,13 @@ import VisionKit
 import AVFoundation
 
 final class RealTimeTranslateViewController: UIViewController {
-    private let scannerVC = DataScannerViewController(recognizedDataTypes: [.text()],
-                                                      qualityLevel: .fast,
-                                                      recognizesMultipleItems: true, 
-                                                      isHighFrameRateTrackingEnabled: true,
-                                                      isPinchToZoomEnabled: true,
-                                                      isGuidanceEnabled: true,
-                                                      isHighlightingEnabled: true)
+    private let dataScanner = DataScannerViewController(recognizedDataTypes: [.text()],
+                                                        qualityLevel: .fast,
+                                                        recognizesMultipleItems: true,
+                                                        isHighFrameRateTrackingEnabled: true,
+                                                        isPinchToZoomEnabled: true,
+                                                        isGuidanceEnabled: true,
+                                                        isHighlightingEnabled: true)
     
     private let realTimeView = RealTimeTranslateView(frame: .zero)
     
@@ -26,6 +26,8 @@ final class RealTimeTranslateViewController: UIViewController {
     }
     
     private var isRunning: Bool = true
+    
+    private var tempLabel: [UILabel] = []
     
     override func loadView() {
         view = realTimeView
@@ -49,16 +51,21 @@ final class RealTimeTranslateViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        dataScanner.stopScanning()
+        dataScanner.dismiss(animated: true)
+    }
+    
     // MARK: - Private
     private func addChildViewController() {
-        addChild(scannerVC)
-        scannerVC.didMove(toParent: self)
-        realTimeView.scannerView.addSubview(scannerVC.view)
+        addChild(dataScanner)
+        dataScanner.didMove(toParent: self)
+        realTimeView.scannerView.addSubview(dataScanner.view)
     }
     
     private func startDataScanner() {
-        scannerVC.view.frame = realTimeView.scannerView.bounds
-        try? scannerVC.startScanning()
+        dataScanner.view.frame = realTimeView.scannerView.bounds
+        try? dataScanner.startScanning()
     }
 }
 
@@ -72,11 +79,14 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
         if isRunning {
             isRunning = false
             realTimeView.pauseAndRunView.image = .init(named: "run")
-            scannerVC.stopScanning()
+            dataScanner.stopScanning()
+            tempLabel.forEach {
+                $0.removeFromSuperview()
+            }
         } else {
             isRunning = true
             realTimeView.pauseAndRunView.image = .init(named: "pause")
-            try? scannerVC.startScanning()
+            try? dataScanner.startScanning()
         }
     }
     
@@ -110,6 +120,47 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
 
 extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
     private func assignDataScannerDelegate() {
-        scannerVC.delegate = self
+        dataScanner.delegate = self
+    }
+    
+    func dataScanner(_ dataScanner: DataScannerViewController, didUpdate updatedItems: [RecognizedItem], allItems: [RecognizedItem]) {
+        tempLabel.forEach {
+            $0.removeFromSuperview()
+        }
+        allItems.forEach { item in
+            switch item {
+            case .text(let text):
+                let bounds = item.bounds
+                let scannerY = self.realTimeView.scannerView.frame.origin.y
+                let textInset: Double = 20
+                let textLabel = UILabel(frame: .init(x: bounds.topLeft.x - textInset/2,
+                                                     y: scannerY + bounds.topLeft.y - textInset/2,
+                                                     width: bounds.topRight.x - bounds.topLeft.x + textInset,
+                                                     height: bounds.bottomLeft.y - bounds.topLeft.y + textInset))
+                
+                textLabel.backgroundColor = .clearPink
+                textLabel.numberOfLines = 0
+                view.addSubview(textLabel)
+                textLabel.text = text.transcript
+                tempLabel.append(textLabel)
+            case .barcode(let code):
+                print("코드 : \(code)")
+            default:
+                break
+            }
+        }
+    }
+    
+    func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
+        switch item {
+        case .text(let text):
+            // TODO: - 복사 붙여넣기
+            UIPasteboard.general.string = text.transcript
+            print(text.transcript)
+        case .barcode(let code):
+            print("코드 : \(code)")
+        default:
+            break
+        }
     }
 }
