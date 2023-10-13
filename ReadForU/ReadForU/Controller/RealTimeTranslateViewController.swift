@@ -10,6 +10,8 @@ import VisionKit
 import AVFoundation
 
 final class RealTimeTranslateViewController: UIViewController {
+    private let translateService = TranslateService()
+    
     private let dataScanner = DataScannerViewController(recognizedDataTypes: [.text()],
                                                         qualityLevel: .fast,
                                                         recognizesMultipleItems: true,
@@ -141,7 +143,12 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                 textLabel.backgroundColor = .clearPink
                 textLabel.numberOfLines = 0
                 view.addSubview(textLabel)
-                textLabel.text = text.transcript
+                
+                let textContent = text.transcript
+                translateService.postRequset(source: realTimeView.buttonView.sourceLanguage,
+                                             target: realTimeView.buttonView.targetLanguage,
+                                             text: textContent)
+                
                 tempLabel.append(textLabel)
             case .barcode(let code):
                 print("코드 : \(code)")

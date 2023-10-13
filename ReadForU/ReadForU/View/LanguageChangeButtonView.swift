@@ -8,14 +8,15 @@
 import UIKit
 
 class LanguageChangeButtonView: UIView {
-    var sourceLanguage: String = "한글"
-    var targetLanguage: String = "영어"
+    // TODO: - 전체 앱에서 공유
+    var sourceLanguage: String = "ko"
+    var targetLanguage: String = "en"
     
     private lazy var sourceLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "원어", children: [
-            UIAction(title: "한글", state: .on, handler: selectLanguageAction),
-            UIAction(title: "영어", handler: selectLanguageAction),
+            UIAction(title: "ko", state: .on, handler: selectLanguageAction),
+            UIAction(title: "en", handler: selectLanguageAction),
             UIAction(title: "일본어", handler: selectLanguageAction),
             UIAction(title: "중국어 간체", handler: selectLanguageAction),
             UIAction(title: "중국어 번체", handler: selectLanguageAction)
@@ -32,8 +33,8 @@ class LanguageChangeButtonView: UIView {
     private lazy var targetLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "번역어", children: [
-            UIAction(title: "한글", handler: selectLanguageAction),
-            UIAction(title: "영어", state: .on, handler: selectLanguageAction),
+            UIAction(title: "ko", handler: selectLanguageAction),
+            UIAction(title: "en", state: .on, handler: selectLanguageAction),
             UIAction(title: "일본어", handler: selectLanguageAction),
             UIAction(title: "중국어 간체", handler: selectLanguageAction),
             UIAction(title: "중국어 번체", handler: selectLanguageAction)
