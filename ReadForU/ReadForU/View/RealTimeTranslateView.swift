@@ -15,8 +15,8 @@ protocol RealTimeTranslateViewDelegate: AnyObject {
 final class RealTimeTranslateView: UIView {
     weak var delegate: RealTimeTranslateViewDelegate?
     
-    private let buttonView: LaunguageChangeButtonView = {
-        let view = LaunguageChangeButtonView(frame: .zero)
+    private let buttonView: LanguageChangeButtonView = {
+        let view = LanguageChangeButtonView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view

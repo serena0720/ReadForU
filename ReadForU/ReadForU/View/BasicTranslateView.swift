@@ -8,8 +8,8 @@
 import UIKit
 
 final class BasicTranslateView: UIView {
-    private let buttonView: LaunguageChangeButtonView = {
-        let view = LaunguageChangeButtonView(frame: .zero)
+    private let buttonView: LanguageChangeButtonView = {
+        let view = LanguageChangeButtonView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LaunguageChangeButtonView: UIView {
+class LanguageChangeButtonView: UIView {
     private lazy var originalLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "원어", children: [

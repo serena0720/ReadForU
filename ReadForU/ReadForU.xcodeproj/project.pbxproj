@@ -12,7 +12,7 @@
 		D2132A072AD4331F00FB0634 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2132A062AD4331F00FB0634 /* MainViewController.swift */; };
 		D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */; };
 		D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D2132A1B2AD436D500FB0634 /* .swiftlint.yml */; };
-		D22E01732AD8E03B00C9DD30 /* LaunguageChangeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E01722AD8E03B00C9DD30 /* LaunguageChangeButtonView.swift */; };
+		D22E01732AD8E03B00C9DD30 /* LanguageChangeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */; };
 		D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CCE2AD5559400AC0824 /* MainView.swift */; };
 		D29B7CD12AD56FA200AC0824 /* ReadForU.gif in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CD02AD56FA200AC0824 /* ReadForU.gif */; };
 		D29B7CD42AD5707F00AC0824 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = D29B7CD32AD5707F00AC0824 /* Gifu */; };
@@ -33,7 +33,7 @@
 		D2132A0E2AD4332100FB0634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2132A102AD4332100FB0634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2132A1B2AD436D500FB0634 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		D22E01722AD8E03B00C9DD30 /* LaunguageChangeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunguageChangeButtonView.swift; sourceTree = "<group>"; };
+		D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChangeButtonView.swift; sourceTree = "<group>"; };
 		D29B7CCE2AD5559400AC0824 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D29B7CD02AD56FA200AC0824 /* ReadForU.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ReadForU.gif; path = ../../../Resource/ReadForU.gif; sourceTree = "<group>"; };
 		D29B7CD52AD570F600AC0824 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 				D29B7CCE2AD5559400AC0824 /* MainView.swift */,
 				D29B7CDF2AD6484300AC0824 /* BasicTranslateView.swift */,
 				D29B7CE12AD6485200AC0824 /* RealTimeTranslateView.swift */,
-				D22E01722AD8E03B00C9DD30 /* LaunguageChangeButtonView.swift */,
+				D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,7 +241,7 @@
 				D29B7CDE2AD6483000AC0824 /* RealTimeTranslateViewController.swift in Sources */,
 				D2132A072AD4331F00FB0634 /* MainViewController.swift in Sources */,
 				D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */,
-				D22E01732AD8E03B00C9DD30 /* LaunguageChangeButtonView.swift in Sources */,
+				D22E01732AD8E03B00C9DD30 /* LanguageChangeButtonView.swift in Sources */,
 				D29B7CD62AD570F600AC0824 /* LoadingViewController.swift in Sources */,
 				D2132A032AD4331F00FB0634 /* AppDelegate.swift in Sources */,
 				D2132A052AD4331F00FB0634 /* SceneDelegate.swift in Sources */,
