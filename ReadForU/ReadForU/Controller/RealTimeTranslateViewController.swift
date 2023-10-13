@@ -85,13 +85,15 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
         guard let device = AVCaptureDevice.default(for: .video) else { return }
         
         if device.hasTorch {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 do {
                     try device.lockForConfiguration()
                     if device.torchMode == AVCaptureDevice.TorchMode.on {
+                        self.realTimeView.backLightView.image = .init(systemName: "lightbulb.circle")
                         device.torchMode = AVCaptureDevice.TorchMode.off
                     } else {
                         do {
+                            realTimeView.backLightView.image = .init(systemName: "lightbulb.circle.fill")
                             try device.setTorchModeOn(level: 1.0)
                         } catch {
                             print(error)
