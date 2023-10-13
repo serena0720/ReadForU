@@ -7,6 +7,7 @@
 
 import UIKit
 import VisionKit
+import AVFoundation
 
 final class RealTimeTranslateViewController: UIViewController {
     private let scannerVC = DataScannerViewController(recognizedDataTypes: [.text()],
@@ -67,7 +68,7 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
         realTimeView.delegate = self
     }
     
-    func toggleButton() {
+    func togglePauseAndRunButton() {
         if isRunning {
             isRunning = false
             realTimeView.pauseAndRunView.image = .init(named: "run")
@@ -78,7 +79,33 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
             try? scannerVC.startScanning()
         }
     }
+    
+    func toggleBackLightButton() {
+        // TODO: - DataScannerViewController와 AVCaptureDevice충돌로 인하여 backflash 작동 시 화면이 멈추는 문제
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+        
+        if device.hasTorch {
+            DispatchQueue.main.async {
+                do {
+                    try device.lockForConfiguration()
+                    if device.torchMode == AVCaptureDevice.TorchMode.on {
+                        device.torchMode = AVCaptureDevice.TorchMode.off
+                    } else {
+                        do {
+                            try device.setTorchModeOn(level: 1.0)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    device.unlockForConfiguration()
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
 }
+
 extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
     private func assignDataScannerDelegate() {
         scannerVC.delegate = self

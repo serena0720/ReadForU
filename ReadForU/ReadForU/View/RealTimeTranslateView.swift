@@ -8,7 +8,8 @@
 import UIKit
 
 protocol RealTimeTranslateViewDelegate: AnyObject {
-    func toggleButton()
+    func togglePauseAndRunButton()
+    func toggleBackLightButton()
 }
 
 final class RealTimeTranslateView: UIView {
@@ -47,6 +48,17 @@ final class RealTimeTranslateView: UIView {
         return imageView
     }()
     
+    let backLightView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "lightbulb.circle")
+        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -56,7 +68,9 @@ final class RealTimeTranslateView: UIView {
         setUpSeparatorViewConstraints()
         setUpScannerViewConstraints()
         setUpPauseAndRunViewConstraints()
-        addChangeLanguageGesture()
+        setUpBackLightViewConstraints()
+        addPauseAndRunViewGesture()
+        addBackLightViewGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -72,6 +86,7 @@ final class RealTimeTranslateView: UIView {
         addSubview(separatorView)
         addSubview(scannerView)
         addSubview(pauseAndRunView)
+        addSubview(backLightView)
     }
     
     // MARK: - Constraints
@@ -111,23 +126,51 @@ final class RealTimeTranslateView: UIView {
         ])
     }
     
+    private func setUpBackLightViewConstraints() {
+        NSLayoutConstraint.activate([
+            backLightView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            backLightView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            backLightView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.12),
+            backLightView.heightAnchor.constraint(equalTo: backLightView.widthAnchor, multiplier: 1)
+        ])
+    }
+    
     // MARK: - Private
-    private func addChangeLanguageGesture() {
-        pauseAndRunView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(reverseLanguage)))
+    private func addPauseAndRunViewGesture() {
+        pauseAndRunView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedPauseAndRun)))
+    }
+    
+    private func addBackLightViewGesture() {
+        backLightView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTappedBackLight)))
     }
     
     @objc
-    private func reverseLanguage() {
-        rotateButton()
+    private func didTappedPauseAndRun() {
+        scalePauseAndRunButton()
         
-        delegate?.toggleButton()
+        delegate?.togglePauseAndRunButton()
     }
     
-    private func rotateButton() {
+    @objc
+    private func didTappedBackLight() {
+        scaleBackLight()
+        
+        delegate?.toggleBackLightButton()
+    }
+    
+    private func scalePauseAndRunButton() {
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.duration = 0.1
         animation.fromValue = 0.5
         animation.repeatCount = 1
         pauseAndRunView.layer.add(animation, forKey: "scale")
+    }
+    
+    private func scaleBackLight() {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.duration = 0.1
+        animation.fromValue = 0.5
+        animation.repeatCount = 1
+        backLightView.layer.add(animation, forKey: "scale")
     }
 }
