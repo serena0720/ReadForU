@@ -68,6 +68,14 @@ final class RealTimeTranslateView: UIView {
         return view
     }()
     
+    let scannerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -75,6 +83,7 @@ final class RealTimeTranslateView: UIView {
         configureUI()
         setUpLanguageButtonStackViewConstraints()
         setUpSeparatorViewConstraints()
+        setUpScannerViewConstraints()
         addChangeLanguageGesture()
     }
     
@@ -89,6 +98,7 @@ final class RealTimeTranslateView: UIView {
     private func configureUI() {
         addSubview(languageButtonStackView)
         addSubview(separatorView)
+        addSubview(scannerView)
         
         [originalLanguageButton, changeLanguageView, translatedLanguageButton].forEach {
             languageButtonStackView.addArrangedSubview($0)
@@ -114,6 +124,15 @@ final class RealTimeTranslateView: UIView {
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
             separatorView.topAnchor.constraint(equalTo: languageButtonStackView.bottomAnchor),
             separatorView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+    
+    private func setUpScannerViewConstraints() {
+        NSLayoutConstraint.activate([
+            scannerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scannerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scannerView.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
+            scannerView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
