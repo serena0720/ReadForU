@@ -7,57 +7,18 @@
 
 import UIKit
 
+protocol RealTimeTranslateViewDelegate: AnyObject {
+    func toggleButton()
+}
+
 final class RealTimeTranslateView: UIView {
-    private lazy var originalLanguageButton: UIButton = {
-        let button = UIButton(primaryAction: nil)
-        button.menu = UIMenu(title: "원어", children: [
-            UIAction(title: "한글", state: .on, handler: reverseLanguageAction),
-            UIAction(title: "영어", handler: reverseLanguageAction),
-            UIAction(title: "중국어", handler: reverseLanguageAction),
-            UIAction(title: "일본어", handler: reverseLanguageAction)
-        ])
-        button.showsMenuAsPrimaryAction = true
-        button.changesSelectionAsPrimaryAction = true
-        button.tintColor = .black
-        
-        return button
-    }()
+    weak var delegate: RealTimeTranslateViewDelegate?
     
-    private lazy var translatedLanguageButton: UIButton = {
-        let button = UIButton(primaryAction: nil)
-        button.menu = UIMenu(title: "번역어", children: [
-            UIAction(title: "한글", handler: reverseLanguageAction),
-            UIAction(title: "영어", state: .on, handler: reverseLanguageAction),
-            UIAction(title: "중국어", handler: reverseLanguageAction),
-            UIAction(title: "일본어", handler: reverseLanguageAction)
-        ])
-        button.showsMenuAsPrimaryAction = true
-        button.changesSelectionAsPrimaryAction = true
-        button.tintColor = .black
+    private let buttonView: LaunguageChangeButtonView = {
+        let view = LaunguageChangeButtonView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        return button
-    }()
-    
-    private lazy var reverseLanguageAction = { (action: UIAction) in
-        self.changeLanguage(title: action.title)
-    }
-    
-    private let changeLanguageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "change")
-        imageView.isUserInteractionEnabled = true
-        
-        return imageView
-    }()
-    
-    private let languageButtonStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .center
-        stackView.distribution = .equalSpacing
-        stackView.axis = .horizontal
-        
-        return stackView
+        return view
     }()
     
     private let separatorView: UIView = {
@@ -70,10 +31,20 @@ final class RealTimeTranslateView: UIView {
     
     let scannerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .systemBackground
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
+    }()
+    
+    let pauseAndRunView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "pause")
+        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
     }()
     
     override init(frame: CGRect) {
@@ -81,9 +52,10 @@ final class RealTimeTranslateView: UIView {
         
         setUpBackgroundColor()
         configureUI()
-        setUpLanguageButtonStackViewConstraints()
+        setUpButtonViewConstraints()
         setUpSeparatorViewConstraints()
         setUpScannerViewConstraints()
+        setUpPauseAndRunViewConstraints()
         addChangeLanguageGesture()
     }
     
@@ -96,25 +68,19 @@ final class RealTimeTranslateView: UIView {
     }
     
     private func configureUI() {
-        addSubview(languageButtonStackView)
+        addSubview(buttonView)
         addSubview(separatorView)
         addSubview(scannerView)
-        
-        [originalLanguageButton, changeLanguageView, translatedLanguageButton].forEach {
-            languageButtonStackView.addArrangedSubview($0)
-        }
+        addSubview(pauseAndRunView)
     }
     
     // MARK: - Constraints
-    private func setUpLanguageButtonStackViewConstraints() {
+    private func setUpButtonViewConstraints() {
         NSLayoutConstraint.activate([
-            languageButtonStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 80),
-            languageButtonStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -80),
-            languageButtonStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            languageButtonStackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.1),
-            
-            changeLanguageView.widthAnchor.constraint(equalTo: languageButtonStackView.heightAnchor, multiplier: 0.5),
-            changeLanguageView.heightAnchor.constraint(equalTo: changeLanguageView.widthAnchor, multiplier: 1)
+            buttonView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            buttonView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            buttonView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            buttonView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
         ])
     }
     
@@ -122,7 +88,7 @@ final class RealTimeTranslateView: UIView {
         NSLayoutConstraint.activate([
             separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            separatorView.topAnchor.constraint(equalTo: languageButtonStackView.bottomAnchor),
+            separatorView.topAnchor.constraint(equalTo: buttonView.bottomAnchor),
             separatorView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
@@ -136,28 +102,32 @@ final class RealTimeTranslateView: UIView {
         ])
     }
     
-    // MARK: - Private
-    private func changeLanguage(title: String) {
-        print("\(title)로 바꾸겠습니다.")
+    private func setUpPauseAndRunViewConstraints() {
+        NSLayoutConstraint.activate([
+            pauseAndRunView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            pauseAndRunView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            pauseAndRunView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.12),
+            pauseAndRunView.heightAnchor.constraint(equalTo: pauseAndRunView.widthAnchor, multiplier: 1)
+        ])
     }
     
+    // MARK: - Private
     private func addChangeLanguageGesture() {
-        changeLanguageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(reverseLanguage)))
+        pauseAndRunView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(reverseLanguage)))
     }
     
     @objc
     private func reverseLanguage() {
         rotateButton()
         
-        print("언어를 교환합니다.")
+        delegate?.toggleButton()
     }
     
     private func rotateButton() {
-        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.duration = 0.1
-        animation.fromValue = 0
-        animation.toValue = Double.pi * 200
+        animation.fromValue = 0.5
         animation.repeatCount = 1
-        changeLanguageView.layer.add(animation, forKey: "rotation")
+        pauseAndRunView.layer.add(animation, forKey: "scale")
     }
 }
