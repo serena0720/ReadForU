@@ -8,7 +8,7 @@
 import UIKit
 
 class LanguageChangeButtonView: UIView {
-    private lazy var originalLanguageButton: UIButton = {
+    private lazy var sourceLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "원어", children: [
             UIAction(title: "한글", state: .on, handler: reverseLanguageAction),
@@ -25,7 +25,7 @@ class LanguageChangeButtonView: UIView {
         return button
     }()
     
-    private lazy var translatedLanguageButton: UIButton = {
+    private lazy var targetLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "번역어", children: [
             UIAction(title: "한글", handler: reverseLanguageAction),
@@ -69,8 +69,8 @@ class LanguageChangeButtonView: UIView {
     }
     
     private func configureUI() {
-        addSubview(originalLanguageButton)
-        addSubview(translatedLanguageButton)
+        addSubview(sourceLanguageButton)
+        addSubview(targetLanguageButton)
         addSubview(changeLanguageView)
     }
     
@@ -82,17 +82,17 @@ class LanguageChangeButtonView: UIView {
     
     private func setUpOriginalLanguageButtonConstraints() {
         NSLayoutConstraint.activate([
-            originalLanguageButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            originalLanguageButton.trailingAnchor.constraint(equalTo: changeLanguageView.leadingAnchor, constant: -30),
-            originalLanguageButton.centerYAnchor.constraint(equalTo: changeLanguageView.centerYAnchor)
+            sourceLanguageButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            sourceLanguageButton.trailingAnchor.constraint(equalTo: changeLanguageView.leadingAnchor, constant: -30),
+            sourceLanguageButton.centerYAnchor.constraint(equalTo: changeLanguageView.centerYAnchor)
         ])
     }
     
     private func setUpTranslatedLanguageButtonConstraints() {
         NSLayoutConstraint.activate([
-            translatedLanguageButton.leadingAnchor.constraint(equalTo: changeLanguageView.trailingAnchor),
-            translatedLanguageButton.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: -30),
-            translatedLanguageButton.centerYAnchor.constraint(equalTo: changeLanguageView.centerYAnchor)
+            targetLanguageButton.leadingAnchor.constraint(equalTo: changeLanguageView.trailingAnchor),
+            targetLanguageButton.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: -30),
+            targetLanguageButton.centerYAnchor.constraint(equalTo: changeLanguageView.centerYAnchor)
         ])
     }
     
