@@ -41,7 +41,11 @@ final class RealTimeTranslateViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        startDataScanner()
+        if scannerAvailable {
+            startDataScanner()
+        } else {
+            print("현재 디바이스는 지원 불가합니다.")
+        }
     }
     
     // MARK: - Private
