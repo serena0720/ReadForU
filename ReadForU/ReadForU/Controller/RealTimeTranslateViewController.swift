@@ -19,6 +19,13 @@ final class RealTimeTranslateViewController: UIViewController {
     
     private let realTimeView = RealTimeTranslateView(frame: .zero)
     
+    private var scannerAvailable: Bool {
+        DataScannerViewController.isSupported &&
+        DataScannerViewController.isAvailable
+    }
+    
+    private var isRunning: Bool = true
+    
     override func loadView() {
         view = realTimeView
     }
