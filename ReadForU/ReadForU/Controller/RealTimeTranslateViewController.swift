@@ -30,7 +30,7 @@ final class RealTimeTranslateViewController: UIViewController {
     private var isRunning: Bool = true
     private var isTimeToRequest: Bool = true
     
-    private var tempLabel: [UILabel] = []
+    private var tempView: [UIView] = []
     
     private var timer: Timer?
     
@@ -99,7 +99,7 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
             isRunning = false
             realTimeView.pauseAndRunView.image = .init(named: "run")
             dataScanner.stopScanning()
-            tempLabel.forEach {
+            tempView.forEach {
                 $0.removeFromSuperview()
             }
         } else {
@@ -150,7 +150,7 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                      didAdd addedItems: [RecognizedItem],
                      allItems: [RecognizedItem]) {
         if isTimeToRequest {
-            tempLabel.forEach {
+            tempView.forEach {
                 $0.removeFromSuperview()
             }
             allItems.forEach { item in
@@ -159,19 +159,25 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                     let bounds = item.bounds
                     let scannerY = self.realTimeView.scannerView.frame.origin.y
                     let textInset: Double = 20
-                    let textLabel = UILabel(frame: .init(x: bounds.topLeft.x - textInset/2,
-                                                         y: scannerY + bounds.topLeft.y - textInset/2,
-                                                         width: bounds.topRight.x - bounds.topLeft.x + textInset,
-                                                         height: bounds.bottomLeft.y - bounds.topLeft.y + textInset))
+                    let textLabel = UILabel()
                     
-                    textLabel.backgroundColor = .clearPink
+//                    textLabel.backgroundColor = .clearPink
                     textLabel.textColor = .black
                     textLabel.numberOfLines = 0
                     textLabel.adjustsFontSizeToFitWidth = true
                     textLabel.textAlignment = .center
                     
-                    view.addSubview(textLabel)
-                    tempLabel.append(textLabel)
+                    let blur = UIBlurEffect(style: .regular)
+                    let visualEffect = UIVisualEffectView(effect: blur)
+                    visualEffect.frame = CGRect(x: bounds.topLeft.x - textInset/2,
+                                                     y: scannerY + bounds.topLeft.y - textInset/2,
+                                                     width: bounds.topRight.x - bounds.topLeft.x + textInset,
+                                                     height: bounds.bottomLeft.y - bounds.topLeft.y + textInset)
+                    textLabel.frame = visualEffect.bounds
+                    
+                    view.addSubview(visualEffect)
+                    visualEffect.contentView.addSubview(textLabel)
+                    tempView.append(visualEffect)
                     
                     let textContent = text.transcript
                     translateService.postRequset(source: realTimeView.buttonView.sourceLanguage.code,
