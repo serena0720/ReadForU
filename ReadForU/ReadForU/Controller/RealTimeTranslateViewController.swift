@@ -57,11 +57,6 @@ final class RealTimeTranslateViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        dataScanner.stopScanning()
-        dataScanner.dismiss(animated: true)
-    }
-    
     // MARK: - Private
     private func addChildViewController() {
         addChild(dataScanner)

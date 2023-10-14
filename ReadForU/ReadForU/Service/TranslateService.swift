@@ -24,7 +24,7 @@ struct TranslateService {
         
         request.httpMethod = "POST"
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             guard let data = data else {
                 print(String(describing: error))
                 return
