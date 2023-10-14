@@ -62,4 +62,5 @@ final class BasicTranslateView: UIView {
             separatorView.topAnchor.constraint(equalTo: buttonView.bottomAnchor),
             separatorView.heightAnchor.constraint(equalToConstant: 1)
         ])
-    }}
+    }
+}
