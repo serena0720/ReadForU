@@ -41,4 +41,18 @@ enum Language: String {
             "zh-TW"
         }
     }
+    
+    init(text: String) {
+        if text == Self.korean.inKorean {
+            self = .korean
+        } else if text == Self.english.inKorean {
+            self = .english
+        } else if text == Self.japanese.inKorean {
+            self = .japanese
+        } else if text == Self.chinese.inKorean {
+            self = .chinese
+        } else {
+            self = .traditionalChineseCharacters
+        }
+    }
 }
