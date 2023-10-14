@@ -154,11 +154,12 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                     let bounds = item.bounds
                     let scannerY = self.realTimeView.scannerView.frame.origin.y
                     let textInset: Double = 20
-                    let textLabel = UILabel()
+                    let textButton = UIButton()
                     
-                    textLabel.numberOfLines = 0
-                    textLabel.adjustsFontSizeToFitWidth = true
-                    textLabel.textAlignment = .center
+                    textButton.titleLabel?.numberOfLines = 0
+                    textButton.titleLabel?.adjustsFontSizeToFitWidth = true
+                    textButton.titleLabel?.textAlignment = .center
+                    textButton.addTarget(self, action: #selector(pasteText(_:)), for: .touchUpInside)
                     
                     let blur = UIBlurEffect(style: .regular)
                     let visualEffectView = UIVisualEffectView(effect: blur)
@@ -169,10 +170,10 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                                                     y: scannerY + bounds.topLeft.y - textInset/2,
                                                     width: bounds.topRight.x - bounds.topLeft.x + textInset,
                                                     height: bounds.bottomLeft.y - bounds.topLeft.y + textInset)
-                    textLabel.frame = visualEffectView.bounds
+                    textButton.frame = visualEffectView.bounds
                     vibrancyEffectView.frame = visualEffectView.bounds
                     
-                    vibrancyEffectView.contentView.addSubview(textLabel)
+                    vibrancyEffectView.contentView.addSubview(textButton)
                     visualEffectView.contentView.addSubview(vibrancyEffectView)
                     view.addSubview(visualEffectView)
                     
@@ -183,7 +184,8 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                                                  target: realTimeView.buttonView.targetLanguage.code,
                                                  text: textContent) { result in
                         DispatchQueue.main.async {
-                            textLabel.text = result.message.result.translatedText
+                            let result = result.message.result.translatedText
+                            textButton.setTitle(result, for: .normal)
                         }
                     }
                     

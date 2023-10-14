@@ -112,6 +112,7 @@
 		D2132A172AD4333200FB0634 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D26299A92ADADC3D00E69AFE /* CustomView */,
 				D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */,
 				D29B7CD72AD573DB00AC0824 /* LoadingView.swift */,
 				D29B7CCE2AD5559400AC0824 /* MainView.swift */,
@@ -159,6 +160,14 @@
 				D22442DB2AD9A0EB0004873D /* PapagoTranslateResult.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		D26299A92ADADC3D00E69AFE /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		D29B7CC92AD54B2A00AC0824 /* Resource */ = {
