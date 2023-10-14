@@ -57,6 +57,10 @@ final class RealTimeTranslateViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        timer?.invalidate()
+    }
+    
     // MARK: - Private
     private func addChildViewController() {
         addChild(dataScanner)
@@ -109,7 +113,7 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
         guard let device = AVCaptureDevice.default(for: .video) else { return }
         
         if device.hasTorch {
-            DispatchQueue.main.async { [self] in
+            DispatchQueue.main.async {
                 do {
                     try device.lockForConfiguration()
                     if device.torchMode == AVCaptureDevice.TorchMode.on {
@@ -117,7 +121,7 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
                         device.torchMode = AVCaptureDevice.TorchMode.off
                     } else {
                         do {
-                            realTimeView.backLightView.image = .init(systemName: "lightbulb.circle.fill")
+                            self.realTimeView.backLightView.image = .init(systemName: "lightbulb.circle.fill")
                             try device.setTorchModeOn(level: 1.0)
                         } catch {
                             print(error)
@@ -137,13 +141,7 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
         dataScanner.delegate = self
     }
     
-    func dataScanner(_ dataScanner: DataScannerViewController, didUpdate updatedItems: [RecognizedItem], allItems: [RecognizedItem]) {
-        
-    }
-    
-    func dataScanner(_ dataScanner: DataScannerViewController,
-                     didAdd addedItems: [RecognizedItem],
-                     allItems: [RecognizedItem]) {
+    func dataScanner(_ dataScanner: DataScannerViewController, didAdd addedItems: [RecognizedItem], allItems: [RecognizedItem]) {
         if isTimeToRequest {
             tempView.forEach {
                 $0.removeFromSuperview()
@@ -152,7 +150,7 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                 switch item {
                 case .text(let text):
                     let bounds = item.bounds
-                    let scannerY = self.realTimeView.scannerView.frame.origin.y
+                    let scannerY = realTimeView.scannerView.frame.origin.y
                     let textInset: Double = 20
                     let textButton = UIButton()
                     

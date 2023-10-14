@@ -44,11 +44,15 @@ class LanguageChangeButtonView: UIView {
         return button
     }()
     
-    private lazy var selectSourceLanguageAction = { (action: UIAction) in
+    private lazy var selectSourceLanguageAction = { [weak self] (action: UIAction) in
+        guard let self else { return }
+        
         self.changeToSelectedLanguage(title: action.title, languageType: LanguageInfo.shared.source)
     }
     
-    private lazy var selectTargetLanguageAction = { (action: UIAction) in
+    private lazy var selectTargetLanguageAction = { [weak self] (action: UIAction) in
+        guard let self else { return }
+        
         self.changeToSelectedLanguage(title: action.title, languageType: LanguageInfo.shared.target)
     }
     
