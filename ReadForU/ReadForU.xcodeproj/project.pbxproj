@@ -130,7 +130,9 @@
 			children = (
 				D248461D2AD99EDF00B9935C /* Language.swift */,
 				D26C10122ADAF2EB0042F919 /* LanguageInfo.swift */,
-				D248461F2AD99F7400B9935C /* DTO */,
+				D26C10152ADB1CBB0042F919 /* KakaoDTO */,
+				D26C10142ADB1CAF0042F919 /* GoogleDTO */,
+				D248461F2AD99F7400B9935C /* PapagoDTO */,
 				D29B7CD92AD5A76600AC0824 /* Assets.xcassets */,
 			);
 			path = Model;
@@ -155,14 +157,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		D248461F2AD99F7400B9935C /* DTO */ = {
+		D248461F2AD99F7400B9935C /* PapagoDTO */ = {
 			isa = PBXGroup;
 			children = (
 				D24846202AD99F9C00B9935C /* PapagoTranslate.swift */,
 				D22442D92AD9A0800004873D /* PapagoMessage.swift */,
 				D22442DB2AD9A0EB0004873D /* PapagoTranslateResult.swift */,
 			);
-			path = DTO;
+			path = PapagoDTO;
 			sourceTree = "<group>";
 		};
 		D26299A92ADADC3D00E69AFE /* CustomView */ = {
@@ -171,6 +173,20 @@
 				D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		D26C10142ADB1CAF0042F919 /* GoogleDTO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GoogleDTO;
+			sourceTree = "<group>";
+		};
+		D26C10152ADB1CBB0042F919 /* KakaoDTO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = KakaoDTO;
 			sourceTree = "<group>";
 		};
 		D29B7CC92AD54B2A00AC0824 /* Resource */ = {
