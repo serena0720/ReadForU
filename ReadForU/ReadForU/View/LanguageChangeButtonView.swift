@@ -101,6 +101,28 @@ class LanguageChangeButtonView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func checkLanguage() {
+        sourceLanguageButton.menu?.children.forEach({ action in
+            guard let action = action as? UIAction else { return }
+            
+            if action.title == LanguageInfo.shared.source.inKorean {
+                action.state = .on
+            } else {
+                action.state = .off
+            }
+        })
+        
+        targetLanguageButton.menu?.children.forEach({ action in
+            guard let action = action as? UIAction else { return }
+            
+            if action.title == LanguageInfo.shared.target.inKorean {
+                action.state = .on
+            } else {
+                action.state = .off
+            }
+        })
+    }
+    
     private func configureUI() {
         addSubview(sourceLanguageButton)
         addSubview(targetLanguageButton)
@@ -139,28 +161,6 @@ class LanguageChangeButtonView: UIView {
     }
     
     // MARK: - Private
-    private func checkLanguage() {
-        sourceLanguageButton.menu?.children.forEach({ action in
-            guard let action = action as? UIAction else { return }
-            
-            if action.title == LanguageInfo.shared.source.inKorean {
-                action.state = .on
-            } else {
-                action.state = .off
-            }
-        })
-        
-        targetLanguageButton.menu?.children.forEach({ action in
-            guard let action = action as? UIAction else { return }
-            
-            if action.title == LanguageInfo.shared.target.inKorean {
-                action.state = .on
-            } else {
-                action.state = .off
-            }
-        })
-    }
-    
     private func changeToSelectedLanguage(title: String, languageType: Language) {
         if languageType == LanguageInfo.shared.source {
             LanguageInfo.shared.source = Language(text: title)

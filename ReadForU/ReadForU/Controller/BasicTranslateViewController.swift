@@ -16,5 +16,7 @@ final class BasicTranslateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        basicView.buttonView.checkLanguage()
     }
 }

@@ -22,6 +22,12 @@ final class MainViewController: UIViewController {
         assignDelegate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainView.buttonView.checkLanguage()
+    }
+    
     private func setUpNavigationBar() {
         let titleImageView = UIImageView()
         

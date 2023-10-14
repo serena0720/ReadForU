@@ -41,6 +41,7 @@ final class RealTimeTranslateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        realTimeView.buttonView.checkLanguage()
         addChildViewController()
         startTimer()
         assignRealTimeTranslateViewDelegate()

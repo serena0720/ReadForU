@@ -16,7 +16,7 @@ final class MainView: UIView {
     weak var delegate: MainViewDelegate?
     
     // TODO: View마다 곂치는 요소 고민해보기
-    private let buttonView: LanguageChangeButtonView = {
+    let buttonView: LanguageChangeButtonView = {
         let view = LanguageChangeButtonView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         
