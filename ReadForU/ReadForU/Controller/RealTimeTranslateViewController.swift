@@ -28,8 +28,11 @@ final class RealTimeTranslateViewController: UIViewController {
     }
     
     private var isRunning: Bool = true
+    private var isTimeToRequest: Bool = true
     
     private var tempLabel: [UILabel] = []
+    
+    private var timer: Timer?
     
     override func loadView() {
         view = realTimeView
@@ -39,6 +42,7 @@ final class RealTimeTranslateViewController: UIViewController {
         super.viewDidLoad()
         
         addChildViewController()
+        startTimer()
         assignRealTimeTranslateViewDelegate()
         assignDataScannerDelegate()
     }
@@ -65,9 +69,22 @@ final class RealTimeTranslateViewController: UIViewController {
         realTimeView.scannerView.addSubview(dataScanner.view)
     }
     
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(notifyRequestTime),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
     private func startDataScanner() {
         dataScanner.view.frame = realTimeView.scannerView.bounds
         try? dataScanner.startScanning()
+    }
+    
+    @objc
+    private func notifyRequestTime() {
+        isTimeToRequest = true
     }
 }
 
