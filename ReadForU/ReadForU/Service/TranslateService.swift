@@ -31,8 +31,14 @@ struct TranslateService {
                 print(String(describing: error))
                 return
             }
-            print(String(data: data, encoding: .utf8)!)
-//            fetchData(data: data)
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                let translateResult = try jsonDecoder.decode(PapagoTranslate.self, from: data)
+                completion(translateResult)
+            } catch {
+                print(error)
+            }
         }
         task.resume()
     }
