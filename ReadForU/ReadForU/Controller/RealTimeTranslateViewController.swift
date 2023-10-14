@@ -161,23 +161,27 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                     let textInset: Double = 20
                     let textLabel = UILabel()
                     
-//                    textLabel.backgroundColor = .clearPink
-                    textLabel.textColor = .black
                     textLabel.numberOfLines = 0
                     textLabel.adjustsFontSizeToFitWidth = true
                     textLabel.textAlignment = .center
                     
                     let blur = UIBlurEffect(style: .regular)
-                    let visualEffect = UIVisualEffectView(effect: blur)
-                    visualEffect.frame = CGRect(x: bounds.topLeft.x - textInset/2,
-                                                     y: scannerY + bounds.topLeft.y - textInset/2,
-                                                     width: bounds.topRight.x - bounds.topLeft.x + textInset,
-                                                     height: bounds.bottomLeft.y - bounds.topLeft.y + textInset)
-                    textLabel.frame = visualEffect.bounds
+                    let visualEffectView = UIVisualEffectView(effect: blur)
+                    let vibrancyEffect = UIVibrancyEffect(blurEffect: blur)
+                    let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
                     
-                    view.addSubview(visualEffect)
-                    visualEffect.contentView.addSubview(textLabel)
-                    tempView.append(visualEffect)
+                    visualEffectView.frame = CGRect(x: bounds.topLeft.x - textInset/2,
+                                                    y: scannerY + bounds.topLeft.y - textInset/2,
+                                                    width: bounds.topRight.x - bounds.topLeft.x + textInset,
+                                                    height: bounds.bottomLeft.y - bounds.topLeft.y + textInset)
+                    textLabel.frame = visualEffectView.bounds
+                    vibrancyEffectView.frame = visualEffectView.bounds
+                    
+                    vibrancyEffectView.contentView.addSubview(textLabel)
+                    visualEffectView.contentView.addSubview(vibrancyEffectView)
+                    view.addSubview(visualEffectView)
+                    
+                    tempView.append(visualEffectView)
                     
                     let textContent = text.transcript
                     translateService.postRequset(source: realTimeView.buttonView.sourceLanguage.code,
