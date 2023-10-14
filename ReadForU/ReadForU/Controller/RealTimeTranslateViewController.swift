@@ -192,6 +192,8 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                         }
                     }
                     
+                    showToast(message: "터치 시 내용이 복사됩니다.", font: .preferredFont(forTextStyle: .body))
+                    
                     isTimeToRequest = false
                 case .barcode(let code):
                     print("코드 : \(code)")
@@ -202,16 +204,36 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
         }
     }
     
-    func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
-        switch item {
-        case .text(let text):
-            // TODO: - 복사 붙여넣기 기능 구현
-            UIPasteboard.general.string = text.transcript
-            print(text.transcript)
-        case .barcode(let code):
-            print("코드 : \(code)")
-        default:
-            break
-        }
+    // MARK: - Private
+    @objc
+    private func pasteText(_ sender: UIButton) {
+        UIPasteboard.general.string = sender.titleLabel?.text
+        showToast(message: "클립보드에 복사되었습니다.", font: .preferredFont(forTextStyle: .body))
+    }
+    
+    private func showToast(message: String, font: UIFont) {
+        let toastLabel = PaddingLabel()
+        
+        toastLabel.backgroundColor = .mainPink
+        toastLabel.textColor = .white
+        toastLabel.font = font
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 4
+        toastLabel.clipsToBounds = true
+        toastLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(toastLabel)
+        
+        NSLayoutConstraint.activate([
+            toastLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            toastLabel.bottomAnchor.constraint(equalTo: realTimeView.pauseAndRunView.topAnchor, constant: -20)
+        ])
+        
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: { _ in
+            toastLabel.removeFromSuperview()
+        })
     }
 }
