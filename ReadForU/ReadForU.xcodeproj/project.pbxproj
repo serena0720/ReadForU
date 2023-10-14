@@ -16,7 +16,7 @@
 		D22442DC2AD9A0EB0004873D /* PapagoTranslateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22442DB2AD9A0EB0004873D /* PapagoTranslateResult.swift */; };
 		D22442DF2AD9A2330004873D /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22442DE2AD9A2330004873D /* TranslateService.swift */; };
 		D22E01732AD8E03B00C9DD30 /* LanguageChangeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */; };
-		D248461E2AD99EDF00B9935C /* LanguageCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248461D2AD99EDF00B9935C /* LanguageCode.swift */; };
+		D248461E2AD99EDF00B9935C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248461D2AD99EDF00B9935C /* Language.swift */; };
 		D24846212AD99F9C00B9935C /* PapagoTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24846202AD99F9C00B9935C /* PapagoTranslate.swift */; };
 		D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CCE2AD5559400AC0824 /* MainView.swift */; };
 		D29B7CD12AD56FA200AC0824 /* ReadForU.gif in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CD02AD56FA200AC0824 /* ReadForU.gif */; };
@@ -42,7 +42,7 @@
 		D22442DB2AD9A0EB0004873D /* PapagoTranslateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoTranslateResult.swift; sourceTree = "<group>"; };
 		D22442DE2AD9A2330004873D /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChangeButtonView.swift; sourceTree = "<group>"; };
-		D248461D2AD99EDF00B9935C /* LanguageCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCode.swift; sourceTree = "<group>"; };
+		D248461D2AD99EDF00B9935C /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		D24846202AD99F9C00B9935C /* PapagoTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoTranslate.swift; sourceTree = "<group>"; };
 		D29B7CCE2AD5559400AC0824 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D29B7CD02AD56FA200AC0824 /* ReadForU.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ReadForU.gif; path = ../../../Resource/ReadForU.gif; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		D2132A182AD433BF00FB0634 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D248461D2AD99EDF00B9935C /* LanguageCode.swift */,
+				D248461D2AD99EDF00B9935C /* Language.swift */,
 				D248461F2AD99F7400B9935C /* DTO */,
 				D29B7CD92AD5A76600AC0824 /* Assets.xcassets */,
 			);
@@ -276,7 +276,7 @@
 				D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */,
 				D22E01732AD8E03B00C9DD30 /* LanguageChangeButtonView.swift in Sources */,
 				D22442DC2AD9A0EB0004873D /* PapagoTranslateResult.swift in Sources */,
-				D248461E2AD99EDF00B9935C /* LanguageCode.swift in Sources */,
+				D248461E2AD99EDF00B9935C /* Language.swift in Sources */,
 				D29B7CD62AD570F600AC0824 /* LoadingViewController.swift in Sources */,
 				D2132A032AD4331F00FB0634 /* AppDelegate.swift in Sources */,
 				D2132A052AD4331F00FB0634 /* SceneDelegate.swift in Sources */,
