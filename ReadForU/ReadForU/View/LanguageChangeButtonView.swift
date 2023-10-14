@@ -1,5 +1,5 @@
 //
-//  LaunguageChangeButtonView.swift
+//  LanguageChangeButtonView.swift
 //  ReadForU
 //
 //  Created by Serena on 2023/10/13.
@@ -11,11 +11,22 @@ class LanguageChangeButtonView: UIView {
     private lazy var sourceLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "원어", children: [
-            UIAction(title: Language.korean.inKorean, state: .on, handler: selectSourceLanguageAction),
-            UIAction(title: Language.english.inKorean, handler: selectSourceLanguageAction),
-            UIAction(title: Language.japanese.inKorean, handler: selectSourceLanguageAction),
-            UIAction(title: Language.chinese.inKorean, handler: selectSourceLanguageAction),
-            UIAction(title: Language.traditionalChineseCharacters.inKorean, handler: selectSourceLanguageAction)
+            UIAction(title: Language.korean.inKorean,
+                     image: UIImage(named: Language.korean.code),
+                     state: .on,
+                     handler: selectSourceLanguageAction),
+            UIAction(title: Language.english.inKorean,
+                     image: UIImage(named: Language.english.code),
+                     handler: selectSourceLanguageAction),
+            UIAction(title: Language.japanese.inKorean, 
+                     image: UIImage(named: Language.japanese.code),
+                     handler: selectSourceLanguageAction),
+            UIAction(title: Language.chinese.inKorean, 
+                     image: UIImage(named: Language.chinese.code),
+                     handler: selectSourceLanguageAction),
+            UIAction(title: Language.traditionalChineseCharacters.inKorean, 
+                     image: UIImage(named: Language.traditionalChineseCharacters.code),
+                     handler: selectSourceLanguageAction)
         ])
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
@@ -29,11 +40,22 @@ class LanguageChangeButtonView: UIView {
     private lazy var targetLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "번역어", children: [
-            UIAction(title: Language.korean.inKorean, handler: selectTargetLanguageAction),
-            UIAction(title: Language.english.inKorean, state: .on, handler: selectTargetLanguageAction),
-            UIAction(title: Language.japanese.inKorean, handler: selectTargetLanguageAction),
-            UIAction(title: Language.chinese.inKorean, handler: selectTargetLanguageAction),
-            UIAction(title: Language.traditionalChineseCharacters.inKorean, handler: selectTargetLanguageAction)
+            UIAction(title: Language.korean.inKorean,
+                     image: UIImage(named: Language.korean.code),
+                     handler: selectTargetLanguageAction),
+            UIAction(title: Language.english.inKorean,
+                     image: UIImage(named: Language.english.code),
+                     state: .on,
+                     handler: selectTargetLanguageAction),
+            UIAction(title: Language.japanese.inKorean,
+                     image: UIImage(named: Language.japanese.code),
+                     handler: selectTargetLanguageAction),
+            UIAction(title: Language.chinese.inKorean,
+                     image: UIImage(named: Language.chinese.code),
+                     handler: selectTargetLanguageAction),
+            UIAction(title: Language.traditionalChineseCharacters.inKorean,
+                     image: UIImage(named: Language.traditionalChineseCharacters.code),
+                     handler: selectTargetLanguageAction)
         ])
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
