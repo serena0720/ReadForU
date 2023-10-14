@@ -8,18 +8,14 @@
 import UIKit
 
 class LanguageChangeButtonView: UIView {
-    // TODO: - 전체 앱에서 공유
-    var sourceLanguage = Language.korean
-    var targetLanguage = Language.english
-    
     private lazy var sourceLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "원어", children: [
-            UIAction(title: Language.korean.inKorean, state: .on, handler: selectLanguageAction),
-            UIAction(title: Language.english.inKorean, handler: selectLanguageAction),
-            UIAction(title: Language.japanese.inKorean, handler: selectLanguageAction),
-            UIAction(title: Language.chinese.inKorean, handler: selectLanguageAction),
-            UIAction(title: Language.traditionalChineseCharacters.inKorean, handler: selectLanguageAction)
+            UIAction(title: Language.korean.inKorean, state: .on, handler: selectSourceLanguageAction),
+            UIAction(title: Language.english.inKorean, handler: selectSourceLanguageAction),
+            UIAction(title: Language.japanese.inKorean, handler: selectSourceLanguageAction),
+            UIAction(title: Language.chinese.inKorean, handler: selectSourceLanguageAction),
+            UIAction(title: Language.traditionalChineseCharacters.inKorean, handler: selectSourceLanguageAction)
         ])
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
@@ -33,11 +29,11 @@ class LanguageChangeButtonView: UIView {
     private lazy var targetLanguageButton: UIButton = {
         let button = UIButton(primaryAction: nil)
         button.menu = UIMenu(title: "번역어", children: [
-            UIAction(title: Language.korean.inKorean, handler: selectLanguageAction),
-            UIAction(title: Language.english.inKorean, state: .on, handler: selectLanguageAction),
-            UIAction(title: Language.japanese.inKorean, handler: selectLanguageAction),
-            UIAction(title: Language.chinese.inKorean, handler: selectLanguageAction),
-            UIAction(title: Language.traditionalChineseCharacters.inKorean, handler: selectLanguageAction)
+            UIAction(title: Language.korean.inKorean, handler: selectTargetLanguageAction),
+            UIAction(title: Language.english.inKorean, state: .on, handler: selectTargetLanguageAction),
+            UIAction(title: Language.japanese.inKorean, handler: selectTargetLanguageAction),
+            UIAction(title: Language.chinese.inKorean, handler: selectTargetLanguageAction),
+            UIAction(title: Language.traditionalChineseCharacters.inKorean, handler: selectTargetLanguageAction)
         ])
         button.showsMenuAsPrimaryAction = true
         button.changesSelectionAsPrimaryAction = true
@@ -48,8 +44,12 @@ class LanguageChangeButtonView: UIView {
         return button
     }()
     
-    private lazy var selectLanguageAction = { (action: UIAction) in
-        self.changeToSelectedLanguage(title: action.title)
+    private lazy var selectSourceLanguageAction = { (action: UIAction) in
+        self.changeToSelectedLanguage(title: action.title, languageType: LanguageInfo.shared.source)
+    }
+    
+    private lazy var selectTargetLanguageAction = { (action: UIAction) in
+        self.changeToSelectedLanguage(title: action.title, languageType: LanguageInfo.shared.target)
     }
     
     private let changeLanguageView: UIImageView = {
@@ -65,6 +65,7 @@ class LanguageChangeButtonView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        checkLanguage()
         configureUI()
         setUpConstraints()
         addReverseLanguageGesture()
@@ -112,8 +113,35 @@ class LanguageChangeButtonView: UIView {
     }
     
     // MARK: - Private
-    private func changeToSelectedLanguage(title: String) {
-        sourceLanguage = Language(rawValue: title) ?? Language.korean
+    private func checkLanguage() {
+        sourceLanguageButton.menu?.children.forEach({ action in
+            guard let action = action as? UIAction else { return }
+            
+            if action.title == LanguageInfo.shared.source.inKorean {
+                action.state = .on
+            } else {
+                action.state = .off
+            }
+        })
+        
+        targetLanguageButton.menu?.children.forEach({ action in
+            guard let action = action as? UIAction else { return }
+            
+            if action.title == LanguageInfo.shared.target.inKorean {
+                action.state = .on
+            } else {
+                action.state = .off
+            }
+        })
+    }
+    
+    private func changeToSelectedLanguage(title: String, languageType: Language) {
+        if languageType == LanguageInfo.shared.source {
+            LanguageInfo.shared.source = Language(text: title)
+        } else {
+            LanguageInfo.shared.target = Language(text: title)
+        }
+        print("타이틀\(title) 원어 \(LanguageInfo.shared.source.code) 번어 \(LanguageInfo.shared.target.code))")
     }
     
     private func addReverseLanguageGesture() {
@@ -124,16 +152,16 @@ class LanguageChangeButtonView: UIView {
     private func reverseLanguage() {
         rotateButton()
         
-        let tempLanguage = sourceLanguage
-        sourceLanguage = targetLanguage
-        targetLanguage = tempLanguage
+        let tempLanguage = LanguageInfo.shared.source
+        LanguageInfo.shared.source = LanguageInfo.shared.target
+        LanguageInfo.shared.target = tempLanguage
         
         sourceLanguageButton.menu?.children.forEach({ action in
             guard let action = action as? UIAction else { return }
             
-            if action.title == targetLanguage.inKorean {
+            if action.title == LanguageInfo.shared.target.inKorean {
                 action.state = .off
-            } else if action.title == sourceLanguage.inKorean {
+            } else if action.title == LanguageInfo.shared.source.inKorean {
                 action.state = .on
             }
         })
@@ -141,9 +169,9 @@ class LanguageChangeButtonView: UIView {
         targetLanguageButton.menu?.children.forEach({ action in
             guard let action = action as? UIAction else { return }
             
-            if action.title == sourceLanguage.inKorean {
+            if action.title == LanguageInfo.shared.source.inKorean {
                 action.state = .off
-            } else if action.title == targetLanguage.inKorean {
+            } else if action.title == LanguageInfo.shared.target.inKorean {
                 action.state = .on
             }
         })

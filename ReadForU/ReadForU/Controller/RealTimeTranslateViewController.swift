@@ -180,9 +180,10 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                     tempView.append(visualEffectView)
                     
                     let textContent = text.transcript
-                    translateService.postRequset(source: realTimeView.buttonView.sourceLanguage.code,
-                                                 target: realTimeView.buttonView.targetLanguage.code,
+                    translateService.postRequest(source: LanguageInfo.shared.source.code,
+                                                 target: LanguageInfo.shared.target.code,
                                                  text: textContent) { result in
+                        print("원어\(LanguageInfo.shared.source.code) 번역어\(LanguageInfo.shared.target.code) 내용 \(result.message.result.translatedText)")
                         DispatchQueue.main.async {
                             let result = result.message.result.translatedText
                             textButton.setTitle(result, for: .normal)
