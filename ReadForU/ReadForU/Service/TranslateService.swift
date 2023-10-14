@@ -8,9 +8,7 @@
 import Foundation
 
 struct TranslateService {
-    var result = ""
-    
-    func postRequset(source: String, target: String, text: String) {
+    func postRequset(source: String, target: String, text: String, completion: @escaping (PapagoTranslate) -> Void) {
         guard let url = URL(string: "https://openapi.naver.com/v1/papago/n2mt") else { return }
         
         var component = URLComponents(url: url, resolvingAgainstBaseURL: true)

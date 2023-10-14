@@ -143,34 +143,51 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
     }
     
     func dataScanner(_ dataScanner: DataScannerViewController, didUpdate updatedItems: [RecognizedItem], allItems: [RecognizedItem]) {
-        tempLabel.forEach {
-            $0.removeFromSuperview()
-        }
-        allItems.forEach { item in
-            switch item {
-            case .text(let text):
-                let bounds = item.bounds
-                let scannerY = self.realTimeView.scannerView.frame.origin.y
-                let textInset: Double = 20
-                let textLabel = UILabel(frame: .init(x: bounds.topLeft.x - textInset/2,
-                                                     y: scannerY + bounds.topLeft.y - textInset/2,
-                                                     width: bounds.topRight.x - bounds.topLeft.x + textInset,
-                                                     height: bounds.bottomLeft.y - bounds.topLeft.y + textInset))
-                
-                textLabel.backgroundColor = .clearPink
-                textLabel.numberOfLines = 0
-                view.addSubview(textLabel)
-                
-                let textContent = text.transcript
-                translateService.postRequset(source: realTimeView.buttonView.sourceLanguage,
-                                             target: realTimeView.buttonView.targetLanguage,
-                                             text: textContent)
-                
-                tempLabel.append(textLabel)
-            case .barcode(let code):
-                print("코드 : \(code)")
-            default:
-                break
+        
+    }
+    
+    func dataScanner(_ dataScanner: DataScannerViewController,
+                     didAdd addedItems: [RecognizedItem],
+                     allItems: [RecognizedItem]) {
+        if isTimeToRequest {
+            tempLabel.forEach {
+                $0.removeFromSuperview()
+            }
+            allItems.forEach { item in
+                switch item {
+                case .text(let text):
+                    let bounds = item.bounds
+                    let scannerY = self.realTimeView.scannerView.frame.origin.y
+                    let textInset: Double = 20
+                    let textLabel = UILabel(frame: .init(x: bounds.topLeft.x - textInset/2,
+                                                         y: scannerY + bounds.topLeft.y - textInset/2,
+                                                         width: bounds.topRight.x - bounds.topLeft.x + textInset,
+                                                         height: bounds.bottomLeft.y - bounds.topLeft.y + textInset))
+                    
+                    textLabel.backgroundColor = .clearPink
+                    textLabel.textColor = .black
+                    textLabel.numberOfLines = 0
+                    textLabel.adjustsFontSizeToFitWidth = true
+                    textLabel.textAlignment = .center
+                    
+                    view.addSubview(textLabel)
+                    tempLabel.append(textLabel)
+                    
+                    let textContent = text.transcript
+                    translateService.postRequset(source: realTimeView.buttonView.sourceLanguage.code,
+                                                 target: realTimeView.buttonView.targetLanguage.code,
+                                                 text: textContent) { result in
+                        DispatchQueue.main.async {
+                            textLabel.text = result.message.result.translatedText
+                        }
+                    }
+                    
+                    isTimeToRequest = false
+                case .barcode(let code):
+                    print("코드 : \(code)")
+                default:
+                    break
+                }
             }
         }
     }
@@ -178,7 +195,7 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
     func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
         switch item {
         case .text(let text):
-            // TODO: - 복사 붙여넣기
+            // TODO: - 복사 붙여넣기 기능 구현
             UIPasteboard.general.string = text.transcript
             print(text.transcript)
         case .barcode(let code):
