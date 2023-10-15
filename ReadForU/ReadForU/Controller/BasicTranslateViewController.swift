@@ -18,5 +18,6 @@ final class BasicTranslateViewController: UIViewController {
         super.viewDidLoad()
         
         basicView.buttonView.checkLanguage()
+        self.hideKeyboardWhenTappedAround()
     }
 }

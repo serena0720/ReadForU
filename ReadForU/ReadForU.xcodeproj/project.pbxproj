@@ -16,6 +16,7 @@
 		D22442DC2AD9A0EB0004873D /* PapagoTranslateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22442DB2AD9A0EB0004873D /* PapagoTranslateResult.swift */; };
 		D22442DF2AD9A2330004873D /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22442DE2AD9A2330004873D /* TranslateService.swift */; };
 		D22E01732AD8E03B00C9DD30 /* LanguageChangeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */; };
+		D2428EFE2ADC384D00B214A5 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2428EFD2ADC384D00B214A5 /* UIViewController+.swift */; };
 		D248461E2AD99EDF00B9935C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248461D2AD99EDF00B9935C /* Language.swift */; };
 		D24846212AD99F9C00B9935C /* PapagoTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24846202AD99F9C00B9935C /* PapagoTranslate.swift */; };
 		D26299AB2ADADC4E00E69AFE /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */; };
@@ -45,6 +46,7 @@
 		D22442DB2AD9A0EB0004873D /* PapagoTranslateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoTranslateResult.swift; sourceTree = "<group>"; };
 		D22442DE2AD9A2330004873D /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		D22E01722AD8E03B00C9DD30 /* LanguageChangeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageChangeButtonView.swift; sourceTree = "<group>"; };
+		D2428EFD2ADC384D00B214A5 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		D248461D2AD99EDF00B9935C /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		D24846202AD99F9C00B9935C /* PapagoTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoTranslate.swift; sourceTree = "<group>"; };
 		D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		D2132A192AD433D000FB0634 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D2428EFC2ADC383B00B214A5 /* Extension */,
 				D29B7CD52AD570F600AC0824 /* LoadingViewController.swift */,
 				D2132A062AD4331F00FB0634 /* MainViewController.swift */,
 				D29B7CDB2AD6480F00AC0824 /* BasicTranslateViewController.swift */,
@@ -156,6 +159,14 @@
 				D22442DE2AD9A2330004873D /* TranslateService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		D2428EFC2ADC383B00B214A5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D2428EFD2ADC384D00B214A5 /* UIViewController+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		D248461F2AD99F7400B9935C /* PapagoDTO */ = {
@@ -294,6 +305,7 @@
 			files = (
 				D22442DF2AD9A2330004873D /* TranslateService.swift in Sources */,
 				D29B7CE22AD6485200AC0824 /* RealTimeTranslateView.swift in Sources */,
+				D2428EFE2ADC384D00B214A5 /* UIViewController+.swift in Sources */,
 				D26C10182ADBBC2F0042F919 /* AlertControllerShowable.swift in Sources */,
 				D29B7CE02AD6484300AC0824 /* BasicTranslateView.swift in Sources */,
 				D29B7CDE2AD6483000AC0824 /* RealTimeTranslateViewController.swift in Sources */,
