@@ -126,16 +126,20 @@ final class BasicTranslateView: UIView {
 
 extension BasicTranslateView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "번역할 내용을 입력하세요." {
-            textView.text = nil
-            textView.textColor = .reversedBackground
+        DispatchQueue.main.async {
+            if textView.text == "번역할 내용을 입력하세요." {
+                textView.text = nil
+                textView.textColor = .reversedBackground
+            }
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = "번역할 내용을 입력하세요."
-            textView.textColor = .lightGray
+        DispatchQueue.main.async {
+            if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                textView.text = "번역할 내용을 입력하세요."
+                textView.textColor = .lightGray
+            }
         }
     }
 }
