@@ -191,14 +191,17 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                                                  text: textContent) { result in
                         DispatchQueue.main.async {
                             let result = result.message.result.translatedText
+                            
                             textButton.setTitle(result, for: .normal)
                         }
                     } errorCompletion: {
-                        let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
-                            self?.navigationController?.popViewController(animated: true)
+                        DispatchQueue.main.async {
+                            let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
+                                self?.navigationController?.popViewController(animated: true)
+                            }
+                            self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
                         }
-                        self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
-                        }
+                    }
                     
                     showToast(message: "터치 시 내용이 복사됩니다.", font: .preferredFont(forTextStyle: .body))
                                                  

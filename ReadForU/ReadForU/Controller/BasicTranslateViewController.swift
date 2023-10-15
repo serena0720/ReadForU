@@ -28,7 +28,7 @@ final class BasicTranslateViewController: UIViewController, AlertControllerShowa
     
     // MARK: - Private
     private func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1,
+        timer = Timer.scheduledTimer(timeInterval: 2,
                                      target: self,
                                      selector: #selector(notifyRequestTime),
                                      userInfo: nil,
@@ -36,11 +36,13 @@ final class BasicTranslateViewController: UIViewController, AlertControllerShowa
     }
     
     private func translateSourceLanguage() {
+        guard let resultText = basicView.sourceLanguageTextField.text else { return }
         translateService.postRequest(source: LanguageInfo.shared.source.code,
                                      target: LanguageInfo.shared.target.code,
-                                     text: basicView.sourceLanguageTextField.text) { result in
+                                     text: resultText) { result in
             DispatchQueue.main.async {
                 let result = result.message.result.translatedText
+                
                 self.basicView.targetLanguageLabel.text = result
             }
         } errorCompletion: {
@@ -56,7 +58,9 @@ final class BasicTranslateViewController: UIViewController, AlertControllerShowa
     
     @objc
     private func notifyRequestTime() {
-        if basicView.sourceLanguageTextField.text != nil {
+        if basicView.sourceLanguageTextField.text != nil,
+           basicView.sourceLanguageTextField.text != "",
+           basicView.sourceLanguageTextField.text != "번역할 내용을 입력하세요." {
             translateSourceLanguage()
         }
     }

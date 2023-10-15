@@ -46,6 +46,7 @@ final class BasicTranslateView: UIView {
     let targetLanguageLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.textColor = .reversedBackground
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -119,7 +120,7 @@ final class BasicTranslateView: UIView {
             targetLanguageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             targetLanguageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             targetLanguageLabel.topAnchor.constraint(equalTo: separatorLanguageView.bottomAnchor),
-            targetLanguageLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            targetLanguageLabel.bottomAnchor.constraint(equalTo: keyboardLayoutGuide.topAnchor)
         ])
     }
 }
