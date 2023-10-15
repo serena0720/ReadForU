@@ -147,7 +147,7 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
         dataScanner.delegate = self
     }
     
-    func dataScanner(_ dataScanner: DataScannerViewController, 
+    func dataScanner(_ dataScanner: DataScannerViewController,
                      didAdd addedItems: [RecognizedItem],
                      allItems: [RecognizedItem]) {
         if isTimeToRequest {

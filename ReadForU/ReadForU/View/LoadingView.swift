@@ -9,10 +9,6 @@ import UIKit
 import Gifu
 
 final class LoadingView: UIView {
-//    private lazy var gifImageView = GIFImageView(frame: CGRect(x: 0,
-//                                                               y: 0,
-//                                                               width: self.frame.size.width,
-//                                                               height: self.frame.size.height))
     private let gifImageView: GIFImageView = {
         let image = GIFImageView()
         image.contentMode = .scaleAspectFill
