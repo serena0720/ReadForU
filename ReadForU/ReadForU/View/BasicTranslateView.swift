@@ -23,18 +23,14 @@ final class BasicTranslateView: UIView {
         return view
     }()
     
-    let sourceLanguageTextField: UITextView = {
+    lazy var sourceLanguageTextField: UITextView = {
         let textView = UITextView()
-        if textView.text.count == 0 {
-            textView.text = "번역할 내용을 입력하세요."
-            textView.textColor = .lightGray
-        } else {
-            textView.text = ""
-            textView.textColor = .reversedBackground
-        }
+        textView.text = "번역할 내용을 입력하세요."
+        textView.textColor = .lightGray
         textView.tintColor = .mainPink
         textView.font = .preferredFont(forTextStyle: .body)
         textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.delegate = self
         
         return textView
     }()
@@ -125,5 +121,21 @@ final class BasicTranslateView: UIView {
             targetLanguageLabel.topAnchor.constraint(equalTo: separatorLanguageView.bottomAnchor),
             targetLanguageLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+}
+
+extension BasicTranslateView: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "번역할 내용을 입력하세요." {
+            textView.text = nil
+            textView.textColor = .reversedBackground
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = "번역할 내용을 입력하세요."
+            textView.textColor = .lightGray
+        }
     }
 }
