@@ -23,6 +23,38 @@ final class BasicTranslateView: UIView {
         return view
     }()
     
+    let sourceLanguageTextField: UITextView = {
+        let textView = UITextView()
+        if textView.text.count == 0 {
+            textView.text = "번역할 내용을 입력하세요."
+            textView.textColor = .lightGray
+        } else {
+            textView.text = ""
+            textView.textColor = .reversedBackground
+        }
+        textView.tintColor = .mainPink
+        textView.font = .preferredFont(forTextStyle: .body)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textView
+    }()
+    
+    private let separatorLanguageView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightPinkGrey
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let targetLanguageLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -30,6 +62,9 @@ final class BasicTranslateView: UIView {
         configureUI()
         setUpButtonViewConstraints()
         setUpSeparatorViewConstraints()
+        setUpSourceLanguageTextFieldConstraints()
+        setUpSeparatorLanguageViewConstraints()
+        setUpTargetLanguageLabelConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -41,8 +76,9 @@ final class BasicTranslateView: UIView {
     }
     
     private func configureUI() {
-        addSubview(buttonView)
-        addSubview(separatorView)
+        [buttonView, separatorView, sourceLanguageTextField, separatorLanguageView, targetLanguageLabel].forEach {
+            addSubview( $0 )
+        }
     }
     
     // MARK: - Constraints
@@ -61,6 +97,33 @@ final class BasicTranslateView: UIView {
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
             separatorView.topAnchor.constraint(equalTo: buttonView.bottomAnchor),
             separatorView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+    
+    private func setUpSourceLanguageTextFieldConstraints() {
+        NSLayoutConstraint.activate([
+            sourceLanguageTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            sourceLanguageTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            sourceLanguageTextField.topAnchor.constraint(equalTo: separatorView.bottomAnchor),
+            sourceLanguageTextField.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.2)
+        ])
+    }
+    
+    private func setUpSeparatorLanguageViewConstraints() {
+        NSLayoutConstraint.activate([
+            separatorLanguageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            separatorLanguageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separatorLanguageView.topAnchor.constraint(equalTo: sourceLanguageTextField.bottomAnchor),
+            separatorLanguageView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+    
+    private func setUpTargetLanguageLabelConstraints() {
+        NSLayoutConstraint.activate([
+            targetLanguageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            targetLanguageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            targetLanguageLabel.topAnchor.constraint(equalTo: separatorLanguageView.bottomAnchor),
+            targetLanguageLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

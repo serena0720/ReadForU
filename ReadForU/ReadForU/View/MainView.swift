@@ -15,7 +15,6 @@ protocol MainViewDelegate: AnyObject {
 final class MainView: UIView {
     weak var delegate: MainViewDelegate?
     
-    // TODO: View마다 곂치는 요소 고민해보기
     let buttonView: LanguageChangeButtonView = {
         let view = LanguageChangeButtonView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +26,7 @@ final class MainView: UIView {
         let button = UIButton(primaryAction: basicTranslateAction)
         button.setTitleColor(.lightGray, for: .normal)
         button.backgroundColor = .systemBackground
+        button.titleLabel?.font = .preferredFont(forTextStyle: .body)
         
         return button
     }()
