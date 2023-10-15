@@ -178,29 +178,31 @@ final class LanguageChangeButtonView: UIView {
     private func reverseLanguage() {
         rotateButton()
         
-        let tempLanguage = LanguageInfo.shared.source
-        LanguageInfo.shared.source = LanguageInfo.shared.target
-        LanguageInfo.shared.target = tempLanguage
-        
-        sourceLanguageButton.menu?.children.forEach({ action in
-            guard let action = action as? UIAction else { return }
+        if LanguageInfo.shared.source != LanguageInfo.shared.target {
+            let tempLanguage = LanguageInfo.shared.source
+            LanguageInfo.shared.source = LanguageInfo.shared.target
+            LanguageInfo.shared.target = tempLanguage
             
-            if action.title == LanguageInfo.shared.target.inKorean {
-                action.state = .off
-            } else if action.title == LanguageInfo.shared.source.inKorean {
-                action.state = .on
-            }
-        })
-        
-        targetLanguageButton.menu?.children.forEach({ action in
-            guard let action = action as? UIAction else { return }
+            sourceLanguageButton.menu?.children.forEach({ action in
+                guard let action = action as? UIAction else { return }
+                
+                if action.title == LanguageInfo.shared.target.inKorean {
+                    action.state = .off
+                } else if action.title == LanguageInfo.shared.source.inKorean {
+                    action.state = .on
+                }
+            })
             
-            if action.title == LanguageInfo.shared.source.inKorean {
-                action.state = .off
-            } else if action.title == LanguageInfo.shared.target.inKorean {
-                action.state = .on
-            }
-        })
+            targetLanguageButton.menu?.children.forEach({ action in
+                guard let action = action as? UIAction else { return }
+                
+                if action.title == LanguageInfo.shared.source.inKorean {
+                    action.state = .off
+                } else if action.title == LanguageInfo.shared.target.inKorean {
+                    action.state = .on
+                }
+            })
+        }
     }
     
     private func rotateButton() {
