@@ -54,7 +54,10 @@ final class RealTimeTranslateViewController: UIViewController {
         if scannerAvailable {
             startDataScanner()
         } else {
-            print("현재 디바이스는 지원 불가합니다.")
+            let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            showAlertController(title: "안내", message: "실시간 번역 지원 가능 기기가 아닙니다.", style: .alert, actions: [cancel])
         }
     }
     
@@ -86,6 +89,19 @@ final class RealTimeTranslateViewController: UIViewController {
     private func notifyRequestTime() {
         isTimeToRequest = true
     }
+    
+    private func showAlertController(title: String? = nil,
+                                     message: String? = nil,
+                                     style: UIAlertController.Style = .actionSheet,
+                                     actions: [UIAlertAction]) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        
+        actions.forEach {
+            alertController.addAction($0)
+        }
+        
+        present(alertController, animated: true)
+    }
 }
 
 // MARK: - Delegate
@@ -97,6 +113,7 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
     func togglePauseAndRunButton() {
         if isRunning {
             isRunning = false
+            isTimeToRequest = false
             realTimeView.pauseAndRunView.image = .init(named: "run")
             dataScanner.stopScanning()
             tempView.forEach {
@@ -104,6 +121,7 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
             }
         } else {
             isRunning = true
+            isTimeToRequest = true
             realTimeView.pauseAndRunView.image = .init(named: "pause")
             try? dataScanner.startScanning()
         }
@@ -187,10 +205,15 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                             let result = result.message.result.translatedText
                             textButton.setTitle(result, for: .normal)
                         }
-                    }
+                    } errorCompletion: {
+                        let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
+                            self?.navigationController?.popViewController(animated: true)
+                        }
+                        self.showAlertController(title: "안내", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
+                        }
                     
                     showToast(message: "터치 시 내용이 복사됩니다.", font: .preferredFont(forTextStyle: .body))
-                    
+                                                 
                     isTimeToRequest = false
                 case .barcode(let code):
                     print("코드 : \(code)")
