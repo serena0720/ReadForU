@@ -9,7 +9,7 @@ import UIKit
 import VisionKit
 import AVFoundation
 
-final class RealTimeTranslateViewController: UIViewController {
+final class RealTimeTranslateViewController: UIViewController, AlertControllerShowable {
     private let translateService = TranslateService()
     
     private let dataScanner = DataScannerViewController(recognizedDataTypes: [.text()],
@@ -89,19 +89,6 @@ final class RealTimeTranslateViewController: UIViewController {
     private func notifyRequestTime() {
         isTimeToRequest = true
     }
-    
-    private func showAlertController(title: String? = nil,
-                                     message: String? = nil,
-                                     style: UIAlertController.Style = .actionSheet,
-                                     actions: [UIAlertAction]) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-        
-        actions.forEach {
-            alertController.addAction($0)
-        }
-        
-        present(alertController, animated: true)
-    }
 }
 
 // MARK: - Delegate
@@ -160,7 +147,9 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
         dataScanner.delegate = self
     }
     
-    func dataScanner(_ dataScanner: DataScannerViewController, didAdd addedItems: [RecognizedItem], allItems: [RecognizedItem]) {
+    func dataScanner(_ dataScanner: DataScannerViewController, 
+                     didAdd addedItems: [RecognizedItem],
+                     allItems: [RecognizedItem]) {
         if isTimeToRequest {
             tempView.forEach {
                 $0.removeFromSuperview()

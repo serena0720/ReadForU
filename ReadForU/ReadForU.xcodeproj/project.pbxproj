@@ -20,6 +20,7 @@
 		D24846212AD99F9C00B9935C /* PapagoTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24846202AD99F9C00B9935C /* PapagoTranslate.swift */; };
 		D26299AB2ADADC4E00E69AFE /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */; };
 		D26C10132ADAF2EB0042F919 /* LanguageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C10122ADAF2EB0042F919 /* LanguageInfo.swift */; };
+		D26C10182ADBBC2F0042F919 /* AlertControllerShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C10172ADBBC2F0042F919 /* AlertControllerShowable.swift */; };
 		D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CCE2AD5559400AC0824 /* MainView.swift */; };
 		D29B7CD12AD56FA200AC0824 /* ReadForU.gif in Resources */ = {isa = PBXBuildFile; fileRef = D29B7CD02AD56FA200AC0824 /* ReadForU.gif */; };
 		D29B7CD42AD5707F00AC0824 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = D29B7CD32AD5707F00AC0824 /* Gifu */; };
@@ -48,6 +49,7 @@
 		D24846202AD99F9C00B9935C /* PapagoTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoTranslate.swift; sourceTree = "<group>"; };
 		D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		D26C10122ADAF2EB0042F919 /* LanguageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageInfo.swift; sourceTree = "<group>"; };
+		D26C10172ADBBC2F0042F919 /* AlertControllerShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerShowable.swift; sourceTree = "<group>"; };
 		D29B7CCE2AD5559400AC0824 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D29B7CD02AD56FA200AC0824 /* ReadForU.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = ReadForU.gif; path = ../../../Resource/ReadForU.gif; sourceTree = "<group>"; };
 		D29B7CD52AD570F600AC0824 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		D2132A172AD4333200FB0634 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D26C10162ADBBBF10042F919 /* Protocol */,
 				D26299A92ADADC3D00E69AFE /* CustomView */,
 				D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */,
 				D29B7CD72AD573DB00AC0824 /* LoadingView.swift */,
@@ -187,6 +190,14 @@
 			children = (
 			);
 			path = KakaoDTO;
+			sourceTree = "<group>";
+		};
+		D26C10162ADBBBF10042F919 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D26C10172ADBBC2F0042F919 /* AlertControllerShowable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		D29B7CC92AD54B2A00AC0824 /* Resource */ = {
@@ -299,6 +310,7 @@
 			files = (
 				D22442DF2AD9A2330004873D /* TranslateService.swift in Sources */,
 				D29B7CE22AD6485200AC0824 /* RealTimeTranslateView.swift in Sources */,
+				D26C10182ADBBC2F0042F919 /* AlertControllerShowable.swift in Sources */,
 				D29B7CE02AD6484300AC0824 /* BasicTranslateView.swift in Sources */,
 				D29B7CDE2AD6483000AC0824 /* RealTimeTranslateViewController.swift in Sources */,
 				D2132A072AD4331F00FB0634 /* MainViewController.swift in Sources */,
