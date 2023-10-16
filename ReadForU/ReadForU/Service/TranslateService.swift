@@ -45,8 +45,4 @@ struct TranslateService {
         }
         task.resume()
     }
-    
-    private func fetchData(data: PapagoTranslate) {
-        
-    }
 }
