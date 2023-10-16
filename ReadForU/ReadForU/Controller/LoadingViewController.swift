@@ -37,8 +37,8 @@ final class LoadingViewController: UIViewController {
     
     @objc
     private func showMainViewController() {
-        let mainVC = MainViewController()
+        let mainViewController = MainViewController()
         
-        navigationController?.pushViewController(mainVC, animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 }
