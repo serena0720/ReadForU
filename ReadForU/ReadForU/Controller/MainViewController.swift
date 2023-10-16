@@ -8,6 +8,8 @@
 import UIKit
 
 final class MainViewController: UIViewController {
+    private let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+    private let loadingViewController = LoadingViewController()
     private let mainView = MainView(frame: .zero)
     
     override func loadView() {
@@ -17,6 +19,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startLoadingViewController()
         setUpNavigationBar()
         setUpNavigationBackBarButton()
         assignDelegate()
@@ -44,6 +47,15 @@ final class MainViewController: UIViewController {
         backBarButtonItem.tintColor = .white
         
         navigationItem.backBarButtonItem = backBarButtonItem
+    }
+    
+    // MARK: - Private
+    private func startLoadingViewController() {
+        if !launchedBefore {
+            navigationController?.pushViewController(loadingViewController, animated: true)
+            
+            UserDefaults.standard.setValue(true, forKey: "launchedBefore")
+        }
     }
 }
 
