@@ -146,31 +146,23 @@ final class RealTimeTranslateView: UIView {
     
     @objc
     private func didTappedPauseAndRun() {
-        scalePauseAndRunButton()
+        changeScaleOfButton()
         
         delegate?.togglePauseAndRunButton()
     }
     
     @objc
     private func didTappedBackLight() {
-        scaleBackLight()
+        changeScaleOfButton()
         
         delegate?.toggleBackLightButton()
     }
     
-    private func scalePauseAndRunButton() {
+    private func changeScaleOfButton() {
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.duration = 0.1
         animation.fromValue = 0.5
         animation.repeatCount = 1
         pauseAndRunView.layer.add(animation, forKey: "scale")
-    }
-    
-    private func scaleBackLight() {
-        let animation = CABasicAnimation(keyPath: "transform.scale")
-        animation.duration = 0.1
-        animation.fromValue = 0.5
-        animation.repeatCount = 1
-        backLightView.layer.add(animation, forKey: "scale")
     }
 }
