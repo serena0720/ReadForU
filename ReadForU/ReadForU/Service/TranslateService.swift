@@ -19,8 +19,8 @@ struct TranslateService {
         var request = URLRequest(url: component?.url ?? url,
                                  timeoutInterval: Double.infinity)
         request.addValue("application/x-www-form-urlencoded; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("1iStJeyJ4Dv8lN5IlKZL", forHTTPHeaderField: "X-Naver-Client-Id")
-        request.addValue("54w46hOuyk", forHTTPHeaderField: "X-Naver-Client-Secret")
+        request.addValue(Bundle.main.PapagoApiKeyId, forHTTPHeaderField: "X-Naver-Client-Id")
+        request.addValue(Bundle.main.PapagoApiKeySecret, forHTTPHeaderField: "X-Naver-Client-Secret")
         
         request.httpMethod = "POST"
         
