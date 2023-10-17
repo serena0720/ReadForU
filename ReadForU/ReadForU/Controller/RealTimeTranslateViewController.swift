@@ -156,64 +156,40 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
         dataScanner.delegate = self
     }
     
-    func dataScanner(_ dataScanner: DataScannerViewController,
-                     didAdd addedItems: [RecognizedItem],
-                     allItems: [RecognizedItem]) {
+    func dataScanner(_ dataScanner: DataScannerViewController, didAdd addedItems: [RecognizedItem], allItems: [RecognizedItem]) {
         if isTimeToRequest {
             tempView.forEach {
                 $0.removeFromSuperview()
             }
+            
             allItems.forEach { item in
                 switch item {
                 case .text(let text):
-                    let bounds = item.bounds
-                    let scannerY = realTimeView.scannerView.frame.origin.y
-                    let textInset: Double = 20
-                    let textButton = UIButton()
+                    let textButton = makeTranslateTextButton()
                     
-                    textButton.titleLabel?.numberOfLines = 0
-                    textButton.titleLabel?.adjustsFontSizeToFitWidth = true
-                    textButton.titleLabel?.textAlignment = .center
-                    textButton.addTarget(self, action: #selector(pasteText(_:)), for: .touchUpInside)
+                    setUpTranslateTextButton(item: item, button: textButton)
                     
-                    let blur = UIBlurEffect(style: .regular)
-                    let visualEffectView = UIVisualEffectView(effect: blur)
-                    let vibrancyEffect = UIVibrancyEffect(blurEffect: blur)
-                    let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
-                    
-                    visualEffectView.frame = CGRect(x: bounds.topLeft.x - textInset/2,
-                                                    y: scannerY + bounds.topLeft.y - textInset/2,
-                                                    width: bounds.topRight.x - bounds.topLeft.x + textInset,
-                                                    height: bounds.bottomLeft.y - bounds.topLeft.y + textInset)
-                    textButton.frame = visualEffectView.bounds
-                    vibrancyEffectView.frame = visualEffectView.bounds
-                    
-                    vibrancyEffectView.contentView.addSubview(textButton)
-                    visualEffectView.contentView.addSubview(vibrancyEffectView)
-                    view.addSubview(visualEffectView)
-                    
-                    tempView.append(visualEffectView)
-                    
-                    let textContent = text.transcript
-                    translateService.postRequest(source: LanguageInfo.shared.source.code,
+                    translateService.postPapagoRequest(source: LanguageInfo.shared.source.code,
                                                  target: LanguageInfo.shared.target.code,
-                                                 text: textContent) { result in
+                                                       text: text.transcript) { result in
                         DispatchQueue.main.async {
-                            let result = result.message.result.translatedText
-                            
-                            textButton.setTitle(result, for: .normal)
-                        }
-                    } errorCompletion: {
-                        DispatchQueue.main.async {
-                            let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
-                                self?.navigationController?.popViewController(animated: true)
-                            }
-                            guard self.presentedViewController != nil else {
-                                return self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
+                            switch result {
+                            case .success(let result):
+                                let result = result.message.result.translatedText
+                                
+                                textButton.setTitle(result, for: .normal)
+                            case .failure:
+                                DispatchQueue.main.async {
+                                    let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
+                                        self?.navigationController?.popViewController(animated: true)
+                                    }
+                                    guard self.presentedViewController != nil else {
+                                        return self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
+                                    }
+                                }
                             }
                         }
                     }
-                    
                     showToast(message: "터치 시 내용이 복사됩니다.", font: .preferredFont(forTextStyle: .body))
                                                  
                     isTimeToRequest = false
@@ -257,5 +233,37 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
         }, completion: { _ in
             toastLabel.removeFromSuperview()
         })
+    }
+    
+    private func makeTranslateTextButton() -> UIButton {
+        let button = UIButton()
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(pasteText(_:)), for: .touchUpInside)
+        
+        return button
+    }
+    
+    private func setUpTranslateTextButton(item: RecognizedItem, button: UIButton) {
+        let bounds = item.bounds
+        let scannerY = realTimeView.scannerView.frame.origin.y
+        let textInset: Double = 20
+        let blur = UIBlurEffect(style: .regular)
+        let visualEffectView = UIVisualEffectView(effect: blur)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: blur)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        
+        visualEffectView.frame = CGRect(x: bounds.topLeft.x - textInset/2,
+                                        y: scannerY + bounds.topLeft.y - textInset/2,
+                                        width: bounds.topRight.x - bounds.topLeft.x + textInset,
+                                        height: bounds.bottomLeft.y - bounds.topLeft.y + textInset)
+        button.frame = visualEffectView.bounds
+        vibrancyEffectView.frame = visualEffectView.bounds
+        
+        vibrancyEffectView.contentView.addSubview(button)
+        visualEffectView.contentView.addSubview(vibrancyEffectView)
+        view.addSubview(visualEffectView)
+        tempView.append(visualEffectView)
     }
 }
