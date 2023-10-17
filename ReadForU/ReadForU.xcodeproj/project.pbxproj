@@ -20,6 +20,8 @@
 		D248461E2AD99EDF00B9935C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248461D2AD99EDF00B9935C /* Language.swift */; };
 		D24846212AD99F9C00B9935C /* PapagoTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24846202AD99F9C00B9935C /* PapagoTranslate.swift */; };
 		D26299AB2ADADC4E00E69AFE /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */; };
+		D26A82C72ADE7CAA004CB11A /* PapagoAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = D26A82C62ADE7CAA004CB11A /* PapagoAPIKey.plist */; };
+		D26A82CA2ADE7D62004CB11A /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A82C92ADE7D62004CB11A /* Bundle+.swift */; };
 		D26C10132ADAF2EB0042F919 /* LanguageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C10122ADAF2EB0042F919 /* LanguageInfo.swift */; };
 		D26C10182ADBBC2F0042F919 /* AlertControllerShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26C10172ADBBC2F0042F919 /* AlertControllerShowable.swift */; };
 		D29B7CCF2AD5559400AC0824 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B7CCE2AD5559400AC0824 /* MainView.swift */; };
@@ -50,6 +52,8 @@
 		D248461D2AD99EDF00B9935C /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		D24846202AD99F9C00B9935C /* PapagoTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoTranslate.swift; sourceTree = "<group>"; };
 		D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		D26A82C62ADE7CAA004CB11A /* PapagoAPIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PapagoAPIKey.plist; sourceTree = "<group>"; };
+		D26A82C92ADE7D62004CB11A /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		D26C10122ADAF2EB0042F919 /* LanguageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageInfo.swift; sourceTree = "<group>"; };
 		D26C10172ADBBC2F0042F919 /* AlertControllerShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerShowable.swift; sourceTree = "<group>"; };
 		D29B7CCE2AD5559400AC0824 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 		D2132A012AD4331F00FB0634 /* ReadForU */ = {
 			isa = PBXGroup;
 			children = (
+				D26A82C62ADE7CAA004CB11A /* PapagoAPIKey.plist */,
 				D2132A1B2AD436D500FB0634 /* .swiftlint.yml */,
 				D2132A162AD4332900FB0634 /* App */,
 				D29B7CC92AD54B2A00AC0824 /* Resource */,
@@ -156,6 +161,7 @@
 		D22442DD2AD9A2190004873D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D26A82C82ADE7D56004CB11A /* Extension */,
 				D22442DE2AD9A2330004873D /* TranslateService.swift */,
 			);
 			path = Service;
@@ -185,6 +191,14 @@
 				D26299AA2ADADC4E00E69AFE /* PaddingLabel.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		D26A82C82ADE7D56004CB11A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D26A82C92ADE7D62004CB11A /* Bundle+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		D26C10162ADBBBF10042F919 /* Protocol */ = {
@@ -269,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D29B7CD12AD56FA200AC0824 /* ReadForU.gif in Resources */,
+				D26A82C72ADE7CAA004CB11A /* PapagoAPIKey.plist in Resources */,
 				D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */,
 				D29B7CDA2AD5A76600AC0824 /* Assets.xcassets in Resources */,
 				D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */,
@@ -318,6 +333,7 @@
 				D248461E2AD99EDF00B9935C /* Language.swift in Sources */,
 				D29B7CD62AD570F600AC0824 /* LoadingViewController.swift in Sources */,
 				D26299AB2ADADC4E00E69AFE /* PaddingLabel.swift in Sources */,
+				D26A82CA2ADE7D62004CB11A /* Bundle+.swift in Sources */,
 				D2132A032AD4331F00FB0634 /* AppDelegate.swift in Sources */,
 				D2132A052AD4331F00FB0634 /* SceneDelegate.swift in Sources */,
 				D29B7CDC2AD6480F00AC0824 /* BasicTranslateViewController.swift in Sources */,

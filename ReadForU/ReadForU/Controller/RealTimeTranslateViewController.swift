@@ -70,6 +70,14 @@ final class RealTimeTranslateViewController: UIViewController, AlertControllerSh
         addChild(dataScanner)
         dataScanner.didMove(toParent: self)
         realTimeView.scannerView.addSubview(dataScanner.view)
+        
+        dataScanner.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dataScanner.view.leadingAnchor.constraint(equalTo: realTimeView.scannerView.leadingAnchor),
+            dataScanner.view.trailingAnchor.constraint(equalTo: realTimeView.scannerView.trailingAnchor),
+            dataScanner.view.topAnchor.constraint(equalTo: realTimeView.scannerView.topAnchor),
+            dataScanner.view.bottomAnchor.constraint(equalTo: realTimeView.scannerView.bottomAnchor)
+        ])
     }
     
     private func startTimer() {
