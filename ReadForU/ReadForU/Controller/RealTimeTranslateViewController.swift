@@ -125,7 +125,6 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
     }
     
     func toggleBackLightButton() {
-        // TODO: - DataScannerViewController와 AVCaptureDevice충돌로 인하여 backflash 작동 시 화면이 멈추는 문제
         guard let device = AVCaptureDevice.default(for: .video) else { return }
         
         if device.hasTorch {
