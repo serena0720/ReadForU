@@ -8,41 +8,46 @@
 import Foundation
 
 struct TranslateService {
-    func postRequest(source: String, target: String, text: String, completion: @escaping (PapagoTranslate) -> Void, errorCompletion: @escaping () -> Void) {
-        guard let url = URL(string: "https://openapi.naver.com/v1/papago/n2mt") else { return }
+    func postPapagoRequest(source: String, target: String, text: String, completion: @escaping (Result<PapagoTranslate, APIError>) -> Void) {
+        var component = URLComponents()
+        component.scheme = PapagoComponentNameSpace.scheme
+        component.host = PapagoComponentNameSpace.host
+        component.path = PapagoComponentNameSpace.translatePath
+        component.queryItems = [
+            URLQueryItem(name: PapagoComponentNameSpace.source, value: source),
+            URLQueryItem(name: PapagoComponentNameSpace.target, value: target),
+            URLQueryItem(name: PapagoComponentNameSpace.text, value: text)
+        ]
         
-        var component = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        component?.queryItems = [URLQueryItem(name: "source", value: source),
-                                 URLQueryItem(name: "target", value: target),
-                                 URLQueryItem(name: "text", value: text)]
+        guard let papagoURL = component.url else { return }
         
-        var request = URLRequest(url: component?.url ?? url,
-                                 timeoutInterval: Double.infinity)
-        request.addValue("application/x-www-form-urlencoded; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue(Bundle.main.PapagoApiKeyId, forHTTPHeaderField: "X-Naver-Client-Id")
-        request.addValue(Bundle.main.PapagoApiKeySecret, forHTTPHeaderField: "X-Naver-Client-Secret")
-        
+        var request = URLRequest(url: papagoURL, timeoutInterval: Double.infinity)
+        request.addValue(PapagoNameSpace.contentTypeValue, forHTTPHeaderField: PapagoNameSpace.contentType)
+        request.addValue(Bundle.main.papagoApiKeyId, forHTTPHeaderField: PapagoNameSpace.clientId)
+        request.addValue(Bundle.main.papagoApiKeySecret, forHTTPHeaderField: PapagoNameSpace.clientSecret)
         request.httpMethod = "POST"
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else {
-                print(String(describing: error))
-                return
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                completion(.failure(APIError.cannotLoadFromNetwork))
             }
-            let jsonDecoder = JSONDecoder()
             
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
-                errorCompletion()
+                completion(.failure(APIError.failureHttpResponse))
                 return
             }
-            do {
-                let translateResult = try jsonDecoder.decode(PapagoTranslate.self, from: data)
-                completion(translateResult)
-            } catch {
-                print(error)
+
+            if let data {
+                let jsonDecoder = JSONDecoder()
+                
+                do {
+                    let translateResult = try jsonDecoder.decode(PapagoTranslate.self, from: data)
+                    completion(.success(translateResult))
+                } catch {
+                    completion(.failure(APIError.unknown))
+                }
             }
-        }
-        task.resume()
+        }.resume()
     }
 }
