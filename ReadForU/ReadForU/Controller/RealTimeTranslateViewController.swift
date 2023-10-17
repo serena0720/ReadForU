@@ -54,12 +54,7 @@ final class RealTimeTranslateViewController: UIViewController, AlertControllerSh
         if scannerAvailable {
             startDataScanner()
         } else {
-            let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }
-            guard presentedViewController != nil else {
-                return showAlertController(title: "미지원 기기", message: "실시간 번역 지원 가능 기기가 아닙니다.", style: .alert, actions: [cancel])
-            }
+            refuseAdmission()
         }
     }
     
@@ -95,6 +90,15 @@ final class RealTimeTranslateViewController: UIViewController, AlertControllerSh
     private func startDataScanner() {
         dataScanner.view.frame = realTimeView.scannerView.bounds
         try? dataScanner.startScanning()
+    }
+    
+    private func refuseAdmission() {
+        let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        guard presentedViewController != nil else {
+            return showAlertController(title: "미지원 기기", message: "실시간 번역 지원 가능 기기가 아닙니다.", style: .alert, actions: [cancel])
+        }
     }
     
     @objc
