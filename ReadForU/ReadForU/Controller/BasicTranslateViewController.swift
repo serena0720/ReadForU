@@ -37,21 +37,24 @@ final class BasicTranslateViewController: UIViewController, AlertControllerShowa
     
     private func translateSourceLanguage() {
         guard let resultText = basicView.sourceLanguageTextField.text else { return }
-        translateService.postRequest(source: LanguageInfo.shared.source.code,
+        translateService.postPapagoRequest(source: LanguageInfo.shared.source.code,
                                      target: LanguageInfo.shared.target.code,
-                                     text: resultText) { result in
-            DispatchQueue.main.async {
-                let result = result.message.result.translatedText
-                
-                self.basicView.targetLanguageLabel.text = result
-            }
-        } errorCompletion: {
-            DispatchQueue.main.async {
-            let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }
-                self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
-                self.timer?.invalidate()
+                                           text: resultText) { result in
+            switch result {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    let result = result.message.result.translatedText
+                    
+                    self.basicView.targetLanguageLabel.text = result
+                }
+            case .failure:
+                DispatchQueue.main.async {
+                    let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
+                    self.timer?.invalidate()
+                }
             }
         }
     }
