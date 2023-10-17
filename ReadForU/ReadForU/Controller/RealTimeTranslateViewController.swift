@@ -57,7 +57,9 @@ final class RealTimeTranslateViewController: UIViewController, AlertControllerSh
             let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             }
-            showAlertController(title: "미지원 기기", message: "실시간 번역 지원 가능 기기가 아닙니다.", style: .alert, actions: [cancel])
+            guard presentedViewController != nil else {
+                return showAlertController(title: "미지원 기기", message: "실시간 번역 지원 가능 기기가 아닙니다.", style: .alert, actions: [cancel])
+            }
         }
     }
     
@@ -207,7 +209,9 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                             let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
                                 self?.navigationController?.popViewController(animated: true)
                             }
-                            self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
+                            guard self.presentedViewController != nil else {
+                                return self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
+                            }
                         }
                     }
                     
