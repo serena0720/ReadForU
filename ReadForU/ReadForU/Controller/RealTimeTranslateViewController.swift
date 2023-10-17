@@ -129,23 +129,16 @@ extension RealTimeTranslateViewController: RealTimeTranslateViewDelegate {
         
         if device.hasTorch {
             DispatchQueue.main.async {
-                do {
-                    try device.lockForConfiguration()
-                    if device.torchMode == AVCaptureDevice.TorchMode.on {
-                        self.realTimeView.backLightView.image = .init(systemName: "lightbulb.circle")
-                        device.torchMode = AVCaptureDevice.TorchMode.off
-                    } else {
-                        do {
-                            self.realTimeView.backLightView.image = .init(systemName: "lightbulb.circle.fill")
-                            try device.setTorchModeOn(level: 1.0)
-                        } catch {
-                            print(error)
-                        }
-                    }
-                    device.unlockForConfiguration()
-                } catch {
-                    print(error)
+                try? device.lockForConfiguration()
+                
+                if device.torchMode == AVCaptureDevice.TorchMode.on {
+                    self.realTimeView.backLightView.image = .init(systemName: "lightbulb.circle")
+                    device.torchMode = AVCaptureDevice.TorchMode.off
+                } else {
+                    self.realTimeView.backLightView.image = .init(systemName: "lightbulb.circle.fill")
+                    try? device.setTorchModeOn(level: 1.0)
                 }
+                device.unlockForConfiguration()
             }
         }
     }
@@ -170,31 +163,17 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
                     setUpTranslateTextButton(item: item, button: textButton)
                     
                     translateService.postPapagoRequest(source: LanguageInfo.shared.source.code,
-                                                 target: LanguageInfo.shared.target.code,
+                                                       target: LanguageInfo.shared.target.code,
                                                        text: text.transcript) { result in
                         DispatchQueue.main.async {
-                            switch result {
-                            case .success(let result):
-                                let result = result.message.result.translatedText
-                                
-                                textButton.setTitle(result, for: .normal)
-                            case .failure:
-                                DispatchQueue.main.async {
-                                    let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
-                                        self?.navigationController?.popViewController(animated: true)
-                                    }
-                                    guard self.presentedViewController != nil else {
-                                        return self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
-                                    }
-                                }
-                            }
+                            self.inputTextInTranslateButton(result: result, button: textButton)
                         }
                     }
                     showToast(message: "터치 시 내용이 복사됩니다.", font: .preferredFont(forTextStyle: .body))
-                                                 
+                    
                     isTimeToRequest = false
-                case .barcode(let code):
-                    print("코드 : \(code)")
+                case .barcode:
+                    showToast(message: "지원하지 않는 코드입니다.", font: .preferredFont(forTextStyle: .body))
                 default:
                     break
                 }
@@ -265,5 +244,23 @@ extension RealTimeTranslateViewController: DataScannerViewControllerDelegate {
         visualEffectView.contentView.addSubview(vibrancyEffectView)
         view.addSubview(visualEffectView)
         tempView.append(visualEffectView)
+    }
+    
+    private func inputTextInTranslateButton(result: Result<PapagoTranslate, APIError>, button: UIButton) {
+        switch result {
+        case .success(let result):
+            let result = result.message.result.translatedText
+            
+            button.setTitle(result, for: .normal)
+        case .failure:
+            DispatchQueue.main.async {
+                let cancel = UIAlertAction(title: "뒤돌아가기", style: .cancel) { [weak self] _ in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                guard self.presentedViewController != nil else {
+                    return self.showAlertController(title: "네트워크 오류", message: "네트워크 문제가 발생하였습니다.", style: .alert, actions: [cancel])
+                }
+            }
+        }
     }
 }
