@@ -63,7 +63,9 @@ final class RealTimeTranslateViewController: UIViewController, AlertControllerSh
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         timer?.invalidate()
     }
     

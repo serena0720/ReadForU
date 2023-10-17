@@ -20,10 +20,14 @@ final class BasicTranslateViewController: UIViewController, AlertControllerShowa
         super.viewDidLoad()
         
         basicView.buttonView.checkLanguage()
-        self.hideKeyboardWhenTappedAround()
-        DispatchQueue.main.async {
-            self.startTimer()
-        }
+        hideKeyboardWhenTappedAround()
+        startTimer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        timer?.invalidate()
     }
     
     // MARK: - Private

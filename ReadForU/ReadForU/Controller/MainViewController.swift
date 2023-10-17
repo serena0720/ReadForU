@@ -9,7 +9,6 @@ import UIKit
 
 final class MainViewController: UIViewController {
     private let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-    private let loadingViewController = LoadingViewController()
     private let mainView = MainView(frame: .zero)
     
     override func loadView() {
@@ -52,6 +51,8 @@ final class MainViewController: UIViewController {
     // MARK: - Private
     private func startLoadingViewController() {
         if !launchedBefore {
+            let loadingViewController = LoadingViewController()
+            
             navigationController?.pushViewController(loadingViewController, animated: true)
             
             UserDefaults.standard.setValue(true, forKey: "launchedBefore")
