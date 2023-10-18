@@ -22,6 +22,7 @@
 		D23DF5222ADF82F600E148C0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DF51C2ADF82F600E148C0 /* MainView.swift */; };
 		D23DF5252ADF82FC00E148C0 /* AlertControllerShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DF5242ADF82FC00E148C0 /* AlertControllerShowable.swift */; };
 		D23DF52D2ADF870800E148C0 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DF5292ADF870800E148C0 /* UIViewController+.swift */; };
+		D23DF52E2ADF870800E148C0 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DF52A2ADF870800E148C0 /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		D23DF51C2ADF82F600E148C0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D23DF5242ADF82FC00E148C0 /* AlertControllerShowable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerShowable.swift; sourceTree = "<group>"; };
 		D23DF5292ADF870800E148C0 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		D23DF52A2ADF870800E148C0 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 		D2132A192AD433D000FB0634 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D23DF52A2ADF870800E148C0 /* LoadingViewController.swift */,
 				D2132A062AD4331F00FB0634 /* MainViewController.swift */,
 			);
 			path = Controller;
@@ -252,6 +255,7 @@
 				D2132A072AD4331F00FB0634 /* MainViewController.swift in Sources */,
 				D23DF51F2ADF82F600E148C0 /* LanguageChangeButtonView.swift in Sources */,
 				D2132A032AD4331F00FB0634 /* AppDelegate.swift in Sources */,
+				D23DF52E2ADF870800E148C0 /* LoadingViewController.swift in Sources */,
 				D23DF5252ADF82FC00E148C0 /* AlertControllerShowable.swift in Sources */,
 				D23DF5212ADF82F600E148C0 /* PaddingLabel.swift in Sources */,
 				D23DF52D2ADF870800E148C0 /* UIViewController+.swift in Sources */,
