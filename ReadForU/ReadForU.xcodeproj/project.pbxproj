@@ -13,6 +13,7 @@
 		D2132A0C2AD4332100FB0634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2132A0B2AD4332100FB0634 /* Assets.xcassets */; };
 		D2132A0F2AD4332100FB0634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2132A0D2AD4332100FB0634 /* LaunchScreen.storyboard */; };
 		D2132A1C2AD436D500FB0634 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D2132A1B2AD436D500FB0634 /* .swiftlint.yml */; };
+		D23DF5152ADF81EA00E148C0 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = D23DF5142ADF81EA00E148C0 /* Gifu */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D23DF5152ADF81EA00E148C0 /* Gifu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +118,9 @@
 			dependencies = (
 			);
 			name = ReadForU;
+			packageProductDependencies = (
+				D23DF5142ADF81EA00E148C0 /* Gifu */,
+			);
 			productName = ReadForU;
 			productReference = D21329FF2AD4331F00FB0634 /* ReadForU.app */;
 			productType = "com.apple.product-type.application";
@@ -144,6 +149,9 @@
 				Base,
 			);
 			mainGroup = D21329F62AD4331F00FB0634;
+			packageReferences = (
+				D23DF5132ADF81EA00E148C0 /* XCRemoteSwiftPackageReference "Gifu" */,
+			);
 			productRefGroup = D2132A002AD4331F00FB0634 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -413,6 +421,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D23DF5132ADF81EA00E148C0 /* XCRemoteSwiftPackageReference "Gifu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaishin/Gifu.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D23DF5142ADF81EA00E148C0 /* Gifu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D23DF5132ADF81EA00E148C0 /* XCRemoteSwiftPackageReference "Gifu" */;
+			productName = Gifu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D21329F72AD4331F00FB0634 /* Project object */;
 }
