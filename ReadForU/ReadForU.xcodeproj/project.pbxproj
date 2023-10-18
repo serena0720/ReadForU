@@ -21,6 +21,7 @@
 		D23DF5212ADF82F600E148C0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DF51B2ADF82F600E148C0 /* PaddingLabel.swift */; };
 		D23DF5222ADF82F600E148C0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DF51C2ADF82F600E148C0 /* MainView.swift */; };
 		D23DF5252ADF82FC00E148C0 /* AlertControllerShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DF5242ADF82FC00E148C0 /* AlertControllerShowable.swift */; };
+		D23DF52D2ADF870800E148C0 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23DF5292ADF870800E148C0 /* UIViewController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		D23DF51B2ADF82F600E148C0 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		D23DF51C2ADF82F600E148C0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D23DF5242ADF82FC00E148C0 /* AlertControllerShowable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerShowable.swift; sourceTree = "<group>"; };
+		D23DF5292ADF870800E148C0 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,14 @@
 				D23DF5242ADF82FC00E148C0 /* AlertControllerShowable.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		D23DF5282ADF870800E148C0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D23DF5292ADF870800E148C0 /* UIViewController+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +254,7 @@
 				D2132A032AD4331F00FB0634 /* AppDelegate.swift in Sources */,
 				D23DF5252ADF82FC00E148C0 /* AlertControllerShowable.swift in Sources */,
 				D23DF5212ADF82F600E148C0 /* PaddingLabel.swift in Sources */,
+				D23DF52D2ADF870800E148C0 /* UIViewController+.swift in Sources */,
 				D23DF51D2ADF82F600E148C0 /* BasicTranslateView.swift in Sources */,
 				D23DF5202ADF82F600E148C0 /* LoadingView.swift in Sources */,
 				D2132A052AD4331F00FB0634 /* SceneDelegate.swift in Sources */,
