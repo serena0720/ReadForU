@@ -39,7 +39,7 @@
 | :--------: | :--------: |
 | <Img src = "https://media.discordapp.net/attachments/1110540681493090344/1164498581194014720/5.gif?ex=65436ed1&is=6530f9d1&hm=214bc9d6fe14195d491efac135f6993196a3fce8b49bfdb4fc6b65a095c45844&=&width=616&height=1332" width="350"/>| <img width="350" src="https://media.discordapp.net/attachments/1110540681493090344/1164497693356326982/1.gif?ex=65436dfd&is=6530f8fd&hm=db4481339a9cc1da12fa34d32366d7178a613cbd6cd8ae74c4f2f72bf8bd82cb&=&width=616&height=1332">|
 | 실시간 번역 | 기본 번역 |
-| <Img src = "https://media.discordapp.net/attachments/1110540681493090344/1164497692995633193/2.gif?ex=65436dfd&is=6530f8fd&hm=19e74d7a7de3f913c4695a869a87e0ba1863ea7f1c5a301756dc4416cb0b2666&=&width=616&height=1332" width="350"/>| <img width="350" src="https://media.discordapp.net/attachments/1110540681493090344/1164500524725440542/3.gif?ex=654370a0&is=6530fba0&hm=a662f5a8ee4905a086dc12c6cd982fb5f1cc239994361b94b06c5a1af7fbb1de&=&width=616&height=1332">|
+| <Img src = "https://github.com/serena0720/ReadForU/assets/101619749/c78a8815-0006-46f9-8b43-602d53454d17" width="350"/>| <img width="350" src="https://github.com/serena0720/ReadForU/assets/101619749/9f225a0b-d30e-410d-ad7d-b59717017565">|
 | 카메라 접근 권한 | 카메라 미지원 시 |
 | <Img src = "https://media.discordapp.net/attachments/1110540681493090344/1164498055857446994/4.gif?ex=65436e53&is=6530f953&hm=9b504765fdac014c0bdaf4becd09090c04958b3d6d37f34dc5d488dee5ef1445&=&width=616&height=1332" width="350"/>| <img width="350" src="https://media.discordapp.net/attachments/1147011195086307399/1164385232292683857/Oct-19-2023_11-10-54.gif?width=652&height=1332">|
 
